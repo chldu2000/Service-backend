@@ -23,7 +23,7 @@ public class CodeGenerator {
                             .mapper("mapper")
                             .xml("mapper")
                             .service("service")
-                            .serviceImpl("serviceImpl")
+                            .serviceImpl("service/impl")
                             .controller("controller");
                 })
                 .strategyConfig(builder -> {

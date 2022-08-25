@@ -9,7 +9,7 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ * salesman 实体，自动生成
  * </p>
  *
  * @author Charlie Du
