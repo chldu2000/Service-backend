@@ -35,7 +35,7 @@ public class Shares implements Serializable {
     private Double sharesPrice;
 
     @TableField("currency_id")
-    private Integer currencyId;
+    private String currencyId;
 
     @TableField("shares_num")
     private Long sharesNum;

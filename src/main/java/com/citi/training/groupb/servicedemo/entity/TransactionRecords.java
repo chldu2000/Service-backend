@@ -1,10 +1,13 @@
 package com.citi.training.groupb.servicedemo.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,8 +26,8 @@ public class TransactionRecords implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId("record_id")
-    private String recordId;
+    @TableId(value = "record_id", type = IdType.AUTO)
+    private Integer recordId;
 
     @TableField("RIC")
     private String ric;
@@ -41,6 +44,9 @@ public class TransactionRecords implements Serializable {
     @TableField("salesman_id")
     private String salesmanId;
 
+    @TableField("currency_id")
+    private String currencyId;
+
     @TableField("transaction_price")
     private Double transactionPrice;
 
@@ -49,4 +55,10 @@ public class TransactionRecords implements Serializable {
 
     @TableField("shares_hold")
     private Long sharesHold;
+
+    @TableField("issuer_sector")
+    private String issuerSector;
+
+    @TableField("transaction_mode")
+    private Integer transactionMode;
 }

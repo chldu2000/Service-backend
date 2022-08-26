@@ -3,6 +3,7 @@ package com.citi.training.groupb.servicedemo.service;
 import com.citi.training.groupb.servicedemo.entity.TransactionRecords;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.citi.training.groupb.servicedemo.entity.TransactionView;
+import com.citi.training.groupb.servicedemo.vo.TransactionRequest;
 
 /**
  * <p>
@@ -13,5 +14,5 @@ import com.citi.training.groupb.servicedemo.entity.TransactionView;
  * @since 2022-06-25
  */
 public interface TransactionRecordsService extends IService<TransactionRecords> {
-    boolean insertOneTransaction(TransactionView transactionView);
+    int insertOneTransaction(TransactionRequest transactionRequest);
 }
