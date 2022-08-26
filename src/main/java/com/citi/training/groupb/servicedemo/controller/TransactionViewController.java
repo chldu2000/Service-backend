@@ -25,18 +25,14 @@ public class TransactionViewController {
         this.transactionViewService = transactionViewService;
     }
 
-    @GetMapping("/query/all")
+    @RequestMapping(method = RequestMethod.GET, path = "/query/all")
     public Result getTransactionView() {
         return ResultResponse.getSuccessResult(transactionViewService.getAllTransaction());
     }
 
-    @GetMapping("/query/before")
+    @RequestMapping(method = RequestMethod.GET, path ="/query/before")
     public Result getTransactionView(@RequestParam String timeGap) {
         return ResultResponse.getSuccessResult(transactionViewService.getTransactionInDays(timeGap));
     }
 
-//    @PostMapping("/insert")
-//    public Result addOneTransaction(@RequestBody TransactionView transactionView) {
-//        return ResultResponse.getSuccessResult();
-//    }
 }

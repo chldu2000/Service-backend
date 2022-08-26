@@ -19,5 +19,4 @@ public interface TransactionViewService extends IService<TransactionView> {
 
     List<TransactionView> getTransactionInDays(String timeGap);
 
-    void insertOneTransaction(TransactionView transactionView);
 }

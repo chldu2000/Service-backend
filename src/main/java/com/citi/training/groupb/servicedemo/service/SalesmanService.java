@@ -17,4 +17,6 @@ import java.util.List;
 public interface SalesmanService extends IService<Salesman> {
 
     List<Salesman> getSalesmanByID(Integer ID);
+
+    List<Salesman> getSalesmanByName(String salesmanName);
 }

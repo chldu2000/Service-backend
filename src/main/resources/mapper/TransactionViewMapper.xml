@@ -19,6 +19,6 @@
         select * from transaction_view;
     </select>
     <select id="selectBeforeDate" parameterType="string" resultType="com.citi.training.groupb.servicedemo.entity.TransactionView">
-        select * from transaction_view where date >= DATE#{date};
+        select * from transaction_view where date > DATE#{date};
     </select>
 </mapper>

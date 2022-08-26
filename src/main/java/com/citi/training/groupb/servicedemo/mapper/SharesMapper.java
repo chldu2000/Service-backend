@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author Charlie Du
- * @since 2022-26-25
+ * @since 2022-06-25
  */
 @Mapper
 public interface SharesMapper extends BaseMapper<Shares> {

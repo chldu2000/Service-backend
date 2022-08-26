@@ -35,9 +35,9 @@ public class TransactionViewServiceImpl extends ServiceImpl<TransactionViewMappe
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         switch (timeGap) {
-            case "1D" -> calendar.add(Calendar.DATE, 0);
-            case "1W" -> calendar.add(Calendar.DATE, -6);
-            case "2W" -> calendar.add(Calendar.DATE, -13);
+            case "1D" -> calendar.add(Calendar.DATE, -1);
+            case "1W" -> calendar.add(Calendar.DATE, -7);
+            case "2W" -> calendar.add(Calendar.DATE, -14);
             case "1M" -> calendar.add(Calendar.MONTH, -1);
             case "3M" -> calendar.add(Calendar.MONTH, -3);
             case "6M" -> calendar.add(Calendar.MONTH, -6);
@@ -50,8 +50,4 @@ public class TransactionViewServiceImpl extends ServiceImpl<TransactionViewMappe
         return transactionViewMapper.selectBeforeDate(start_date);
     }
 
-    @Override
-    public void insertOneTransaction(TransactionView transactionView) {
-
-    }
 }
