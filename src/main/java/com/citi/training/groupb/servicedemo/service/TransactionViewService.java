@@ -12,10 +12,12 @@ import java.util.List;
  * </p>
  *
  * @author Charlie Du
- * @since 2022-42-25
+ * @since 2022-08-25
  */
 public interface TransactionViewService extends IService<TransactionView> {
     List<TransactionView> getAllTransaction();
+
+    List<TransactionView> getTransactionInDays(String timeGap);
 
     void insertOneTransaction(TransactionView transactionView);
 }

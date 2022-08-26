@@ -1,11 +1,13 @@
 package com.citi.training.groupb.servicedemo.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.citi.training.groupb.servicedemo.entity.TransactionView;
 import com.citi.training.groupb.servicedemo.mapper.TransactionViewMapper;
 import com.citi.training.groupb.servicedemo.service.TransactionViewService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -26,6 +28,26 @@ public class TransactionViewServiceImpl extends ServiceImpl<TransactionViewMappe
 
     public List<TransactionView> getAllTransaction() {
         return transactionViewMapper.selectAll();
+    }
+
+    @Override
+    public List<TransactionView> getTransactionInDays(String timeGap) {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        switch (timeGap) {
+            case "1D" -> calendar.add(Calendar.DATE, 0);
+            case "1W" -> calendar.add(Calendar.DATE, -6);
+            case "2W" -> calendar.add(Calendar.DATE, -13);
+            case "1M" -> calendar.add(Calendar.MONTH, -1);
+            case "3M" -> calendar.add(Calendar.MONTH, -3);
+            case "6M" -> calendar.add(Calendar.MONTH, -6);
+            case "1Y" -> calendar.add(Calendar.YEAR, -1);
+            default -> {
+                return getAllTransaction();
+            }
+        }
+        String start_date = dateFormat.format(calendar.getTime());
+        return transactionViewMapper.selectBeforeDate(start_date);
     }
 
     @Override

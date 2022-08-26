@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author Charlie Du
- * @since 2022-42-25
+ * @since 2022-08-25
  */
 @RestController
 @RequestMapping("/servicedemo/transactionView")
@@ -25,9 +25,14 @@ public class TransactionViewController {
         this.transactionViewService = transactionViewService;
     }
 
-    @GetMapping("/query")
+    @GetMapping("/query/all")
     public Result getTransactionView() {
         return ResultResponse.getSuccessResult(transactionViewService.getAllTransaction());
+    }
+
+    @GetMapping("/query/before")
+    public Result getTransactionView(@RequestParam String timeGap) {
+        return ResultResponse.getSuccessResult(transactionViewService.getTransactionInDays(timeGap));
     }
 
 //    @PostMapping("/insert")

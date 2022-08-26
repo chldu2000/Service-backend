@@ -12,10 +12,12 @@ import java.util.List;
  * </p>
  *
  * @author Charlie Du
- * @since 2022-42-25
+ * @since 2022-08-25
  */
 @Mapper
 public interface TransactionViewMapper extends BaseMapper<TransactionView> {
 
     List<TransactionView> selectAll();
+
+    List<TransactionView> selectBeforeDate(String date);
 }
