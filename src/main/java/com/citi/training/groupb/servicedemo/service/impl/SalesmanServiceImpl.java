@@ -26,7 +26,7 @@ public class SalesmanServiceImpl extends ServiceImpl<SalesmanMapper, Salesman> i
     }
 
     public List<Salesman> getSalesmanByID(Integer ID) {
-        List<Salesman> salesmanList = new LinkedList();
+        List<Salesman> salesmanList = new LinkedList<>();
         salesmanList.add(salesmanMapper.selectById(ID));
         return salesmanList;
     }

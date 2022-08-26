@@ -28,5 +28,6 @@ public class Salesman implements Serializable {
     @TableField("salesman_name")
     private String salesmanName;
 
-
+    @TableField("company_id")
+    private String companyId;
 }
