@@ -5,10 +5,7 @@ import com.citi.training.groupb.servicedemo.result.ResultCode;
 import com.citi.training.groupb.servicedemo.result.ResultResponse;
 import com.citi.training.groupb.servicedemo.service.TransactionRecordsService;
 import com.citi.training.groupb.servicedemo.vo.TransactionRequest;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -24,6 +21,26 @@ public class TransactionRecordsController {
 
     public TransactionRecordsController(TransactionRecordsService transactionRecordsService) {
         this.transactionRecordsService = transactionRecordsService;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/transaction_records")
+    public Result<Object> getTransactionView() {
+        return ResultResponse.getSuccessResult(transactionRecordsService.getTransactionInTime("All"));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path ="/transaction_records/{timeGap}")
+    public Result<Object> getTransactionView(@PathVariable String timeGap) {
+        return ResultResponse.getSuccessResult(transactionRecordsService.getTransactionInTime(timeGap));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/transaction_records/summary")
+    public Result<Object> getTransactionSummary() {
+        return ResultResponse.getSuccessResult(transactionRecordsService.getTransactionSummaryInTime("All"));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/transaction_records/summary/{timeGap}")
+    public Result<Object> getTransactionSummary(@PathVariable String timeGap) {
+        return ResultResponse.getSuccessResult(transactionRecordsService.getTransactionSummaryInTime(timeGap));
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/transaction_records")

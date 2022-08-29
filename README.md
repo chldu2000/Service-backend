@@ -10,11 +10,9 @@ Please initialize database with [this sql file](./src/main/resources/sql/citi.sq
 
 ### Query transaction records in one day
 
-*Query transaction records using* `TransactionView`.
-
 Query transaction record for a certain time period (such as 1 day):
 
-GET: `http://127.0.0.1:8081/transaction_view/1D`
+**GET**: `http://127.0.0.1:8081/transaction_records/1D`
 
 Response:
 
@@ -57,7 +55,7 @@ Response:
 
 Query transaction summary in 1 day:
 
-GET: `http://127.0.0.1:8081/transaction_view/summary/1D`
+**GET**: `http://127.0.0.1:8081/transaction_records/summary/1D`
 
 Response:
 
@@ -110,17 +108,17 @@ Others:
 
 Query all transaction records:
 
-GET: `http://127.0.0.1:8081/transaction_view`
+**GET**: `http://127.0.0.1:8081/transaction_records`
 
 Query transaction summary for all records:
 
-GET: `http://127.0.0.1:8081/transaction_view/summary`
+**GET**: `http://127.0.0.1:8081/transaction_records/summary`
 
 ### Insert a transaction record
 
 For example:
 
-POST: `http://127.0.0.1:8081/transaction_records` with body:
+**POST**: `http://127.0.0.1:8081/transaction_records` with body:
 
 ```json
 {
@@ -144,5 +142,38 @@ Response:
     "status": 200,
     "message": "成功!",
     "data": null
+}
+```
+
+### Get chart data: buy, sell... each day
+
+Query all chart data (history):
+
+**GET**: `http://127.0.0.1:8081/history`
+
+Query all chart data for a certain time period (such as 1 day):
+
+**GET**: `http://127.0.0.1:8081/history/1D`
+
+Responses will be like:
+
+```json
+{
+    "status": 200,
+    "message": "成功!",
+    "data": [
+        {
+            "date": "2022-08-25",
+            "buy": 14.705881940452297,
+            "sell": 0.0,
+            "cumulative_net": 14.705881940452297
+        },
+        {
+            "date": "2022-08-29",
+            "buy": 229.4117638809046,
+            "sell": 0.0,
+            "cumulative_net": 229.4117638809046
+        }
+    ]
 }
 ```
