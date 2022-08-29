@@ -8,13 +8,13 @@ Please initialize database with [this sql file](./src/main/resources/sql/citi.sq
 
 ## Request example
 
-### Query transaction records
+### Query transaction records in one day
 
-Query transaction records using “TransactionView”.
+*Query transaction records using* `TransactionView`.
 
-For example, query all transaction:
+Query transaction record for a certain time period (such as 1 day):
 
-GET: `http://127.0.0.1:8081/transaction_view`
+GET: `http://127.0.0.1:8081/transaction_view/1D`
 
 Response:
 
@@ -24,7 +24,7 @@ Response:
     "message": "成功!",
     "data": [
         {
-            "date": "2022-08-25",
+            "date": "2022-08-29",
             "ticker": "不存在的企业",
             "ric": "fake",
             "size": 10,
@@ -55,9 +55,9 @@ Response:
 }
 ```
 
-Query transaction record for a certain time period (such as 1 day):
+Query transaction summary in 1 day:
 
-GET: `http://127.0.0.1:8081/transaction_view/1D`
+GET: `http://127.0.0.1:8081/transaction_view/summary/1D`
 
 Response:
 
@@ -65,24 +65,56 @@ Response:
 {
     "status": 200,
     "message": "成功!",
-    "data": [
-        {
-            "date": "2022-08-29",
-            "ticker": "不存在的企业",
-            "ric": "fake",
-            "size": 10,
-            "price": 10.0,
-            "currency": "CNY",
-            "salesperson": "salesman1",
-            "client_name": "用户1号",
-            "client_side": 1,
-            "notional_usd": 1.4705881940452297,
-            "issuer_sector": "Sector1",
-            "ht_pt": 1
-        }
-    ]
+    "data": {
+        "total_buy": 200.0,
+        "total_sell": 0.0,
+        "quantity": 200.0,
+        "buy_notional": 29.411763880904594,
+        "sell_notional": 0.0,
+        "net_notional": 29.411763880904594,
+        "list": [
+            {
+                "date": "2022-08-29",
+                "ticker": "不存在的企业",
+                "ric": "fake",
+                "size": 10,
+                "price": 10.0,
+                "currency": "CNY",
+                "salesperson": "salesman1",
+                "client_name": "用户1号",
+                "client_side": 1,
+                "notional_usd": 1.4705881940452297,
+                "issuer_sector": "Sector1",
+                "ht_pt": 1
+            },
+            {
+                "date": "2022-08-29",
+                "ticker": "不存在的企业",
+                "ric": "fake",
+                "size": 10,
+                "price": 10.0,
+                "currency": "CNY",
+                "salesperson": "salesman1",
+                "client_name": "用户1号",
+                "client_side": 1,
+                "notional_usd": 1.4705881940452297,
+                "issuer_sector": "Sector1",
+                "ht_pt": 1
+            }
+        ]
+    }
 }
 ```
+
+Others:
+
+Query all transaction records:
+
+GET: `http://127.0.0.1:8081/transaction_view`
+
+Query transaction summary for all records:
+
+GET: `http://127.0.0.1:8081/transaction_view/summary`
 
 ### Insert a transaction record
 
