@@ -4,10 +4,7 @@ import com.citi.training.groupb.servicedemo.result.Result;
 import com.citi.training.groupb.servicedemo.result.ResultCode;
 import com.citi.training.groupb.servicedemo.result.ResultResponse;
 import com.citi.training.groupb.servicedemo.service.SalesmanService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-06-30
  */
 @RestController
-@RequestMapping("/servicedemo/salesman")
 public class SalesmanController {
 
     private final SalesmanService salesmanService;
@@ -27,12 +23,9 @@ public class SalesmanController {
         this.salesmanService = salesmanService;
     }
 
-    @GetMapping("/query")
-    public Result<Object> getSalesman(@RequestParam(value = "id") Integer ID) {
-        if (ID != null) {
-            return ResultResponse.getSuccessResult(salesmanService.selectByID(ID));
-        } else {
-            return ResultResponse.getFailResult(ResultCode.BAD_REQUEST.getResultCode(), ResultCode.BAD_REQUEST.getResultMsg());
-        }
-    }
+
+//    @RequestMapping(method = RequestMethod.GET, path = "/salesman/{Id}")
+//    public Result<Object> getSalesman(@PathVariable Integer Id) {
+//        return ResultResponse.getSuccessResult(salesmanService.selectByID(Id));
+//    }
 }

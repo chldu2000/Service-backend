@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
  * @since 2022-39-25
  */
 @Controller
-@RequestMapping("/servicedemo/exchangeRate")
 public class ExchangeRateController {
 
 }
