@@ -1,6 +1,5 @@
 package com.citi.training.groupb.servicedemo.controller;
 
-import com.citi.training.groupb.servicedemo.entity.TransactionView;
 import com.citi.training.groupb.servicedemo.result.Result;
 import com.citi.training.groupb.servicedemo.result.ResultCode;
 import com.citi.training.groupb.servicedemo.result.ResultResponse;
@@ -8,7 +7,6 @@ import com.citi.training.groupb.servicedemo.service.TransactionRecordsService;
 import com.citi.training.groupb.servicedemo.vo.TransactionRequest;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-06-25
  */
 @RestController
-@RequestMapping("/servicedemo/transactionRecords")
 public class TransactionRecordsController {
     private final TransactionRecordsService transactionRecordsService;
 
@@ -29,7 +26,7 @@ public class TransactionRecordsController {
         this.transactionRecordsService = transactionRecordsService;
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/insert")
+    @RequestMapping(method = RequestMethod.POST, path = "/transaction_records")
     public Result<Object> insertOneTransaction(@RequestBody TransactionRequest transactionRequest) {
         int res = transactionRecordsService.insertOneTransaction(transactionRequest);
         if (res > 0) {

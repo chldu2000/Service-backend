@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
  * @since 2022-06-25
  */
 @Controller
-@RequestMapping("/servicedemo/shares")
 public class SharesController {
 
 }

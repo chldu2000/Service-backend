@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
  * @since 2022-08-25
  */
 @RestController
-@RequestMapping("/servicedemo/transactionView")
 public class TransactionViewController {
     private final TransactionViewService transactionViewService;
 
@@ -22,13 +21,13 @@ public class TransactionViewController {
         this.transactionViewService = transactionViewService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/query/all")
-    public Result getTransactionView() {
+    @RequestMapping(method = RequestMethod.GET, path = "/transaction_view")
+    public Result<Object> getTransactionView() {
         return ResultResponse.getSuccessResult(transactionViewService.getAllTransaction());
     }
 
-    @RequestMapping(method = RequestMethod.GET, path ="/query/before")
-    public Result getTransactionView(@RequestParam String timeGap) {
+    @RequestMapping(method = RequestMethod.GET, path ="/transaction_view/{timeGap}")
+    public Result<Object> getTransactionView(@PathVariable String timeGap) {
         return ResultResponse.getSuccessResult(transactionViewService.getTransactionInTime(timeGap));
     }
 
