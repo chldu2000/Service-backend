@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,12 +37,14 @@ public class TransactionView implements Serializable {
      * 用户名字
      */
     @TableField("client_name")
+    @JsonProperty("client_name")
     private String clientName;
 
     /**
      * 交易类型标志，买入1，卖出0
      */
     @TableField("client_side")
+    @JsonProperty("client_side")
     private Integer clientSide;
 
     /**
@@ -69,6 +72,7 @@ public class TransactionView implements Serializable {
     private Double price;
 
     @TableField("notional_usd")
+    @JsonProperty("notional_usd")
     private Object notionalUsd;
 
     /**
@@ -81,6 +85,7 @@ public class TransactionView implements Serializable {
      * 发行部门
      */
     @TableField("issuer_sector")
+    @JsonProperty("issuer_sector")
     private String issuerSector;
 
     /**
@@ -93,5 +98,6 @@ public class TransactionView implements Serializable {
      * 交易模式，1：HT，0：PT
      */
     @TableField("ht_pt")
+    @JsonProperty("ht_pt")
     private Integer htPt;
 }

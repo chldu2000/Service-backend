@@ -9,6 +9,7 @@ import com.citi.training.groupb.servicedemo.vo.TransactionRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -37,40 +38,48 @@ public class TransactionRecordsServiceImpl extends ServiceImpl<TransactionRecord
     @Override
     public int insertOneTransaction(TransactionRequest transactionRequest) {
         // query user with username
-        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-        userQueryWrapper.eq("user_name", transactionRequest.getClientName());
-        User targetUser = userMapper.selectOne(userQueryWrapper);
+        List<User> targetUser = userMapper.selectByUserName(transactionRequest.getClientName());
         // query share with ric
         Shares targetShare = sharesMapper.selectById(transactionRequest.getRic());
         // query currency with currency name
-        QueryWrapper<ExchangeRate> exchangeRateQueryWrapper = new QueryWrapper<>();
-        exchangeRateQueryWrapper.eq("currency_name", transactionRequest.getCurrency());
-        ExchangeRate targetExchangeRate = exchangeRateMapper.selectOne(exchangeRateQueryWrapper);
+        List<ExchangeRate> targetExchangeRate = exchangeRateMapper.selectByCurrencyName(transactionRequest.getCurrency());
         // query salesman with name
-        QueryWrapper<Salesman> salesmanQueryWrapper = new QueryWrapper<>();
-        salesmanQueryWrapper.eq("salesman_name", transactionRequest.getSalesperson());
-        Salesman targetSalesman = salesmanMapper.selectOne(salesmanQueryWrapper);
+        List<Salesman> targetSalesman = salesmanMapper.selectByName(transactionRequest.getSalesperson());
         // all information above should not be null
-        if (targetUser == null) {
+        if (targetUser.size() == 0) {
             return 1;
-        } else if (targetShare == null) {
+        }
+        if (targetShare == null) {
             return 2;
-        } else if (targetExchangeRate == null) {
+        }
+        if (targetExchangeRate.size() == 0) {
             return 3;
-        } else if (targetSalesman == null) {
+        }
+        if (targetSalesman.size() == 0) {
             return 4;
         }
+        // target share should be trade-able
+        if (targetShare.getSharesFlag() == 0) {
+            return 5;
+        }
+        // shares hold by "targetUser" should be less than "trade_limit"
+        Long sharesHold = transactionRecordsMapper.selectHoldByUser(targetShare.getRic(), targetUser.get(0).getUserId());
+        sharesHold = sharesHold == null ? 0 : sharesHold;
+        if (sharesHold + transactionRequest.getSize().longValue() > targetShare.getTradeLimit()) {
+            return 6;
+        }
         // optional: compare "ticker" input with "shares_name" in targetShare
+        // any other checkup?
         TransactionRecords newRecord = new TransactionRecords();
         newRecord.setRic(transactionRequest.getRic());
-        newRecord.setUserId(targetUser.getUserId());
+        newRecord.setUserId(targetUser.get(0).getUserId());
         newRecord.setTransactionSize(transactionRequest.getSize());
         newRecord.setTransactionTime(LocalDateTime.now());
-        newRecord.setSalesmanId(targetSalesman.getSalesmanId());
-        newRecord.setCurrencyId(targetExchangeRate.getCurrencyId());
+        newRecord.setSalesmanId(targetSalesman.get(0).getSalesmanId());
+        newRecord.setCurrencyId(targetExchangeRate.get(0).getCurrencyId());
         newRecord.setTransactionPrice(transactionRequest.getPrice());
         newRecord.setTransactionFlag(transactionRequest.getClientSide().equals("buy") ? 1 : 0);
-        newRecord.setSharesHold(transactionRequest.getSize().longValue()); // should add latest "hold" value
+        newRecord.setSharesHold(transactionRequest.getSize().longValue() + sharesHold);
         newRecord.setIssuerSector(transactionRequest.getIssuerSector());
         newRecord.setTransactionMode(transactionRequest.getHtPt());
         transactionRecordsMapper.insert(newRecord);

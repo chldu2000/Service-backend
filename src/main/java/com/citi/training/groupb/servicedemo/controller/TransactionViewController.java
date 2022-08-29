@@ -1,12 +1,9 @@
 package com.citi.training.groupb.servicedemo.controller;
 
-import com.citi.training.groupb.servicedemo.entity.TransactionView;
 import com.citi.training.groupb.servicedemo.result.Result;
-import com.citi.training.groupb.servicedemo.result.ResultCode;
 import com.citi.training.groupb.servicedemo.result.ResultResponse;
 import com.citi.training.groupb.servicedemo.service.TransactionViewService;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 
 /**
  * <p>
@@ -32,7 +29,7 @@ public class TransactionViewController {
 
     @RequestMapping(method = RequestMethod.GET, path ="/query/before")
     public Result getTransactionView(@RequestParam String timeGap) {
-        return ResultResponse.getSuccessResult(transactionViewService.getTransactionInDays(timeGap));
+        return ResultResponse.getSuccessResult(transactionViewService.getTransactionInTime(timeGap));
     }
 
 }

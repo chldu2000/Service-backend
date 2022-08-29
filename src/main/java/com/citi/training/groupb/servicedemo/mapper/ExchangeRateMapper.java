@@ -4,6 +4,8 @@ import com.citi.training.groupb.servicedemo.entity.ExchangeRate;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * <p>
  * 汇率表 Mapper 接口
@@ -14,5 +16,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ExchangeRateMapper extends BaseMapper<ExchangeRate> {
-
+    List<ExchangeRate> selectByCurrencyName(String currencyName);
 }

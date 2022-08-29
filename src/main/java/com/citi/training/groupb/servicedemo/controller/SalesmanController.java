@@ -28,11 +28,11 @@ public class SalesmanController {
     }
 
     @GetMapping("/query")
-    public Result getSalesman(@RequestParam(value = "id") Integer ID) {
+    public Result<Object> getSalesman(@RequestParam(value = "id") Integer ID) {
         if (ID != null) {
-            return ResultResponse.getSuccessResult(salesmanService.getSalesmanByID(ID));
+            return ResultResponse.getSuccessResult(salesmanService.selectByID(ID));
         } else {
-            return ResultResponse.getFailResult(ResultCode.BODY_NOT_MATCH.getResultCode(), ResultCode.BODY_NOT_MATCH.getResultMsg());
+            return ResultResponse.getFailResult(ResultCode.BAD_REQUEST.getResultCode(), ResultCode.BAD_REQUEST.getResultMsg());
         }
     }
 }

@@ -2,7 +2,6 @@ package com.citi.training.groupb.servicedemo.service;
 
 import com.citi.training.groupb.servicedemo.entity.TransactionView;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -17,6 +16,6 @@ import java.util.List;
 public interface TransactionViewService extends IService<TransactionView> {
     List<TransactionView> getAllTransaction();
 
-    List<TransactionView> getTransactionInDays(String timeGap);
+    List<TransactionView> getTransactionInTime(String timeGap);
 
 }

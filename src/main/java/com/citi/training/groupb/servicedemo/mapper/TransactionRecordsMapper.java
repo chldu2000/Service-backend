@@ -14,5 +14,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface TransactionRecordsMapper extends BaseMapper<TransactionRecords> {
-    int insertOne(TransactionRecords transactionRecord);
+    Long selectHoldByUser(String ric, String userId);
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.citi.training.groupb.servicedemo.mapper.TransactionRecordsMapper">
-
+    <select id="selectHoldByUser" parameterType="string" resultType="long">
+        select shares_hold from transaction_records where RIC = #{ric} and user_id = #{userId} order by transaction_time desc limit 1;
+    </select>
 </mapper>

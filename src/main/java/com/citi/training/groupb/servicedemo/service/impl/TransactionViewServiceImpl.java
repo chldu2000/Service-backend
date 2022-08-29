@@ -31,7 +31,7 @@ public class TransactionViewServiceImpl extends ServiceImpl<TransactionViewMappe
     }
 
     @Override
-    public List<TransactionView> getTransactionInDays(String timeGap) {
+    public List<TransactionView> getTransactionInTime(String timeGap) {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         switch (timeGap) {

@@ -2,7 +2,6 @@ package com.citi.training.groupb.servicedemo.service;
 
 import com.citi.training.groupb.servicedemo.entity.Salesman;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.citi.training.groupb.servicedemo.mapper.SalesmanMapper;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ import java.util.List;
  */
 public interface SalesmanService extends IService<Salesman> {
 
-    List<Salesman> getSalesmanByID(Integer ID);
+    List<Salesman> selectByID(Integer ID);
 
-    List<Salesman> getSalesmanByName(String salesmanName);
+    List<Salesman> selectByName(String salesmanName);
 }

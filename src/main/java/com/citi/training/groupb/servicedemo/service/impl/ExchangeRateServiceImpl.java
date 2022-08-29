@@ -35,8 +35,6 @@ public class ExchangeRateServiceImpl extends ServiceImpl<ExchangeRateMapper, Exc
 
     @Override
     public List<ExchangeRate> getExchangeRateByName(String currencyName) {
-        QueryWrapper<ExchangeRate> wrapper = new QueryWrapper<>();
-        wrapper.eq("currency_name", currencyName);
-        return exchangeRateMapper.selectList(wrapper);
+        return exchangeRateMapper.selectByCurrencyName(currencyName);
     }
 }

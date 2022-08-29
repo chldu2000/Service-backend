@@ -2,7 +2,7 @@ package com.citi.training.groupb.servicedemo.result;
 
 public enum ResultCode {
     SUCCESS(200, "成功!"),
-    BODY_NOT_MATCH(400, "请求的数据格式不符!"),
+    BAD_REQUEST(400, "错误的请求!"),
     SIGNATURE_NOT_MATCH(401, "请求的数字签名不匹配!"),
     NOT_FOUND(404, "未找到该资源!"),
     INTERNAL_SERVER_ERROR(500, "服务器内部错误!"),

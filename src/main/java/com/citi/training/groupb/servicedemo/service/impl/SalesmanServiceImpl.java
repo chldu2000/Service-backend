@@ -26,16 +26,14 @@ public class SalesmanServiceImpl extends ServiceImpl<SalesmanMapper, Salesman> i
         this.salesmanMapper = salesmanMapper;
     }
 
-    public List<Salesman> getSalesmanByID(Integer ID) {
+    public List<Salesman> selectByID(Integer ID) {
         List<Salesman> salesmanList = new ArrayList<>();
         salesmanList.add(salesmanMapper.selectById(ID));
         return salesmanList;
     }
 
     @Override
-    public List<Salesman> getSalesmanByName(String salesmanName) {
-        QueryWrapper<Salesman> wrapper = new QueryWrapper<>();
-        wrapper.eq("salesman_name", salesmanName);
-        return salesmanMapper.selectList(wrapper);
+    public List<Salesman> selectByName(String salesmanName) {
+        return salesmanMapper.selectByName(salesmanName);
     }
 }
