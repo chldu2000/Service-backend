@@ -3,6 +3,8 @@ package com.citi.training.groupb.servicedemo.service;
 import com.citi.training.groupb.servicedemo.entity.Salesman;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SalesmanService extends IService<Salesman> {
 
+    List<Salesman> selectByID(Integer ID);
+
+    List<Salesman> selectByName(String salesmanName);
 }

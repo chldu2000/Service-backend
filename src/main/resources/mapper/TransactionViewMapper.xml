@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.citi.training.groupb.servicedemo.mapper.TransactionViewMapper">
+<!--    <resultMap id="transactions" type="com.citi.training.groupb.servicedemo.entity.TransactionView">-->
+<!--        <result column="date" jdbcType="DATE" property="date" />-->
+<!--        <result column="client_name" jdbcType="VARCHAR" property="clientName" />-->
+<!--        <result column="client_side" jdbcType="INTEGER" property="clientSide" />-->
+<!--        <result column="ticker" jdbcType="VARCHAR" property="ticker" />-->
+<!--        <result column="ric" jdbcType="VARCHAR" property="ric" />-->
+<!--        <result column="size" jdbcType="INTEGER" property="size" />-->
+<!--        <result column="price" jdbcType="FLOAT" property="price" />-->
+<!--        <result column="notional_usd" jdbcType="FLOAT" property="notionalUsd" />-->
+<!--        <result column="currency" jdbcType="VARCHAR" property="currency" />-->
+<!--        <result column="issuer_sector" jdbcType="VARCHAR" property="issuerSector" />-->
+<!--        <result column="salesperson" jdbcType="VARCHAR" property="salesperson" />-->
+<!--        <result column="ht_pt" jdbcType="INTEGER" property="htPt" />-->
+<!--    </resultMap>-->
+    <select id="selectAll" resultType="com.citi.training.groupb.servicedemo.entity.TransactionView">
+        select * from transaction_view;
+    </select>
+    <select id="selectBeforeDate" parameterType="string" resultType="com.citi.training.groupb.servicedemo.entity.TransactionView">
+        select * from transaction_view where date > DATE#{date};
+    </select>
+</mapper>

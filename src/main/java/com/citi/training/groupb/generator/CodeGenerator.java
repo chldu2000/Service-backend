@@ -23,11 +23,16 @@ public class CodeGenerator {
                             .mapper("mapper")
                             .xml("mapper")
                             .service("service")
-                            .serviceImpl("serviceImpl")
+                            .serviceImpl("service/impl")
                             .controller("controller");
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude("salesman")
+                            .addInclude("exchange_rate")
+                            .addInclude("transaction_records")
+                            .addInclude("shares")
+                            .addInclude("user")
+                            .addInclude("transaction_view")
                             .serviceBuilder()
                             .formatServiceFileName("%sService")
                             .formatServiceImplFileName("%sServiceImpl")

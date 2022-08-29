@@ -5,3 +5,6 @@ spring:
     url: jdbc:mysql://localhost:3306/citi?useUnicode=true&useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true
     username: groupb
     password: d@tAbaseadmIn2022
+
+server:
+  port: 8081
