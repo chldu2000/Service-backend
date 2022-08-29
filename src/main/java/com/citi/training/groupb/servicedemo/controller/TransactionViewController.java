@@ -23,12 +23,22 @@ public class TransactionViewController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/transaction_view")
     public Result<Object> getTransactionView() {
-        return ResultResponse.getSuccessResult(transactionViewService.getAllTransaction());
+        return ResultResponse.getSuccessResult(transactionViewService.getTransactionInTime("All"));
     }
 
     @RequestMapping(method = RequestMethod.GET, path ="/transaction_view/{timeGap}")
     public Result<Object> getTransactionView(@PathVariable String timeGap) {
         return ResultResponse.getSuccessResult(transactionViewService.getTransactionInTime(timeGap));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/transaction_view/summary")
+    public Result<Object> getTransactionSummary() {
+        return ResultResponse.getSuccessResult(transactionViewService.getTransactionSummaryInTime("All"));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/transaction_view/summary/{timeGap}")
+    public Result<Object> getTransactionSummary(@PathVariable String timeGap) {
+        return ResultResponse.getSuccessResult(transactionViewService.getTransactionSummaryInTime(timeGap));
     }
 
 }

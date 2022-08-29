@@ -10,8 +10,6 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Data
-@Getter
-@Setter
 public class TransactionRequest {
 
     @JsonProperty("client_name")
