@@ -73,7 +73,7 @@ public class TransactionView implements Serializable {
 
     @TableField("notional_usd")
     @JsonProperty("notional_usd")
-    private Object notionalUsd;
+    private Double notionalUsd;
 
     /**
      * 货币名称
