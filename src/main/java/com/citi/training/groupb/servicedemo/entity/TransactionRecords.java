@@ -51,7 +51,7 @@ public class TransactionRecords implements Serializable {
     private Double transactionPrice;
 
     @TableField("transaction_flag")
-    private Integer transactionFlag;
+    private String transactionFlag;
 
     @TableField("shares_hold")
     private Long sharesHold;

@@ -69,7 +69,8 @@ public class TransactionRecordsServiceImpl extends ServiceImpl<TransactionRecord
         // shares hold by "targetUser" should be less than "trade_limit"
         Long sharesHold = transactionRecordsMapper.selectHoldByUser(targetShare.getRic(), targetUser.get(0).getUserId());
         sharesHold = sharesHold == null ? 0 : sharesHold;
-        if (sharesHold + transactionRequest.getSize().longValue() > targetShare.getTradeLimit()) {
+        Long sizeToTrade = transactionRequest.getSize().longValue() * (transactionRequest.getClientSide().equals("buy") ? 1 : -1);
+        if (sharesHold + sizeToTrade > targetShare.getTradeLimit() || sharesHold + sizeToTrade < 0) {
             return 6;
         }
         // optional: compare "ticker" input with "shares_name" in targetShare
@@ -82,8 +83,8 @@ public class TransactionRecordsServiceImpl extends ServiceImpl<TransactionRecord
         newRecord.setSalesmanId(targetSalesman.get(0).getSalesmanId());
         newRecord.setCurrencyId(targetExchangeRate.get(0).getCurrencyId());
         newRecord.setTransactionPrice(transactionRequest.getPrice());
-        newRecord.setTransactionFlag(transactionRequest.getClientSide().equals("buy") ? 1 : 0);
-        newRecord.setSharesHold(transactionRequest.getSize().longValue() + sharesHold);
+        newRecord.setTransactionFlag(transactionRequest.getClientSide());
+        newRecord.setSharesHold(sizeToTrade + sharesHold);
         newRecord.setIssuerSector(transactionRequest.getIssuerSector());
         newRecord.setTransactionMode(transactionRequest.getHtPt());
         transactionRecordsMapper.insert(newRecord);
@@ -120,7 +121,7 @@ public class TransactionRecordsServiceImpl extends ServiceImpl<TransactionRecord
         for (TransactionView transaction : list) {
             Double totalPrice = transaction.getPrice() * transaction.getSize();
             Double totalNotional = transaction.getNotionalUsd() * transaction.getSize();
-            if (transaction.getClientSide() == 0) {
+            if (transaction.getClientSide().equals("sell")) {
                 // different transactions may user different currency...
                 // so TotalSell and TotalBuy may be wrong...?
                 summary.setTotalSell(summary.getTotalSell() + totalPrice);

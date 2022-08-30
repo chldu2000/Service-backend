@@ -51,7 +51,7 @@ public class SharesHistoryServiceImpl extends ServiceImpl<SharesHistoryMapper, S
                 DailySummary summary = new DailySummary(dateDisplay, 0.0, 0.0, 0.0);
                 for (TransactionView record : list) {
                     Double totalNotional = record.getNotionalUsd() * record.getSize();
-                    if (record.getClientSide() == 1) {
+                    if (record.getClientSide().equals("buy")) {
                         summary.setBuy(summary.getBuy() + totalNotional);
                     } else {
                         summary.setSell(summary.getSell() + totalNotional);

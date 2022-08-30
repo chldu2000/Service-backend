@@ -22,7 +22,7 @@ Response:
     "message": "成功!",
     "data": [
         {
-            "date": "2022-08-29",
+            "date": "2022-08-30",
             "ticker": "不存在的企业",
             "ric": "fake",
             "size": 10,
@@ -30,13 +30,13 @@ Response:
             "currency": "CNY",
             "salesperson": "salesman1",
             "client_name": "用户1号",
-            "client_side": 1,
+            "client_side": "buy",
             "notional_usd": 1.4705881940452297,
             "issuer_sector": "Sector1",
             "ht_pt": 1
         },
         {
-            "date": "2022-08-29",
+            "date": "2022-08-30",
             "ticker": "不存在的企业",
             "ric": "fake",
             "size": 10,
@@ -44,7 +44,7 @@ Response:
             "currency": "CNY",
             "salesperson": "salesman1",
             "client_name": "用户1号",
-            "client_side": 1,
+            "client_side": "sell",
             "notional_usd": 1.4705881940452297,
             "issuer_sector": "Sector1",
             "ht_pt": 1
@@ -64,15 +64,15 @@ Response:
     "status": 200,
     "message": "成功!",
     "data": {
-        "total_buy": 200.0,
-        "total_sell": 0.0,
-        "quantity": 200.0,
-        "buy_notional": 29.411763880904594,
-        "sell_notional": 0.0,
-        "net_notional": 29.411763880904594,
+        "total_buy": 100.0,
+        "total_sell": 100.0,
+        "quantity": 0.0,
+        "buy_notional": 14.705881940452297,
+        "sell_notional": 14.705881940452297,
+        "net_notional": 0.0,
         "list": [
             {
-                "date": "2022-08-29",
+                "date": "2022-08-30",
                 "ticker": "不存在的企业",
                 "ric": "fake",
                 "size": 10,
@@ -80,13 +80,13 @@ Response:
                 "currency": "CNY",
                 "salesperson": "salesman1",
                 "client_name": "用户1号",
-                "client_side": 1,
+                "client_side": "buy",
                 "notional_usd": 1.4705881940452297,
                 "issuer_sector": "Sector1",
                 "ht_pt": 1
             },
             {
-                "date": "2022-08-29",
+                "date": "2022-08-30",
                 "ticker": "不存在的企业",
                 "ric": "fake",
                 "size": 10,
@@ -94,7 +94,7 @@ Response:
                 "currency": "CNY",
                 "salesperson": "salesman1",
                 "client_name": "用户1号",
-                "client_side": 1,
+                "client_side": "sell",
                 "notional_usd": 1.4705881940452297,
                 "issuer_sector": "Sector1",
                 "ht_pt": 1

@@ -11,7 +11,7 @@
  Target Server Version : 80029
  File Encoding         : 65001
 
- Date: 26/08/2022 15:19:22
+ Date: 30/08/2022 10:29:00
 */
 
 SET NAMES utf8mb4;
@@ -28,12 +28,13 @@ CREATE TABLE `exchange_rate`  (
   `currency_rate` float NULL DEFAULT NULL COMMENT '与美元的汇率',
   PRIMARY KEY (`currency_id`) USING BTREE,
   UNIQUE INDEX `exchange_rate_currency_id_uindex`(`currency_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '汇率表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '汇率表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of exchange_rate
 -- ----------------------------
 INSERT INTO `exchange_rate` VALUES ('CNY', 'CNY', 'Yuan', 6.8);
+INSERT INTO `exchange_rate` VALUES ('USD', 'USD', 'Dollar', 1);
 
 -- ----------------------------
 -- Table structure for salesman
@@ -44,7 +45,7 @@ CREATE TABLE `salesman`  (
   `salesman_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '交易员名字',
   `company_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '交易员所属公司代号',
   PRIMARY KEY (`salesman_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '交易员表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '交易员表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of salesman
@@ -67,12 +68,13 @@ CREATE TABLE `shares`  (
   `trade_limit` int NULL DEFAULT NULL COMMENT '个人持有最大数限制',
   `shares_flag` int NULL DEFAULT NULL COMMENT '状态符，标志是否可交易',
   PRIMARY KEY (`RIC`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '股票信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '股票信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shares
 -- ----------------------------
 INSERT INTO `shares` VALUES ('fake', '不存在的企业', 1, 10, 'CNY', 10000, 100, 1);
+INSERT INTO `shares` VALUES ('share2', 'TESTNAME', 1, 20, 'USD', 10000, 120, 1);
 
 -- ----------------------------
 -- Table structure for shares_class
@@ -82,7 +84,7 @@ CREATE TABLE `shares_class`  (
   `class_id` int NOT NULL AUTO_INCREMENT COMMENT '类别编号，自增',
   `class_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '类别名称',
   PRIMARY KEY (`class_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '股票所属行业类型表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '股票所属行业类型表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shares_class
@@ -101,11 +103,14 @@ CREATE TABLE `shares_history`  (
   `transaction_out` bigint NULL DEFAULT NULL COMMENT '股票当天总卖出数量',
   `record_date` date NULL DEFAULT NULL COMMENT '记录时间',
   PRIMARY KEY (`record_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '股票记录表（日结）' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '股票记录表（日结）' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shares_history
 -- ----------------------------
+INSERT INTO `shares_history` VALUES (1, 'fake', 10, 10, 0, '2022-08-25');
+INSERT INTO `shares_history` VALUES (2, 'fake', 10, 20, 0, '2022-08-29');
+INSERT INTO `shares_history` VALUES (3, 'share2', 10, 10, 0, '2022-08-29');
 
 -- ----------------------------
 -- Table structure for transaction_records
@@ -120,17 +125,22 @@ CREATE TABLE `transaction_records`  (
   `salesman_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '交易员编号',
   `currency_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '货币编号',
   `transaction_price` float NULL DEFAULT NULL COMMENT '股票成交单价',
-  `transaction_flag` int NULL DEFAULT NULL COMMENT '交易类型标志，买入1，卖出0',
+  `transaction_flag` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '交易类型标志，buy or sell',
   `shares_hold` bigint NULL DEFAULT NULL COMMENT '用户当前的该股持有数（包含当前交易）',
   `issuer_sector` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '发行部门',
   `transaction_mode` int NULL DEFAULT NULL COMMENT '交易模式，1：HT，0：PT',
   PRIMARY KEY (`record_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '交易记录表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '交易记录表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of transaction_records
 -- ----------------------------
-INSERT INTO `transaction_records` VALUES (1, 'fake', '1', 10, '2022-08-25 16:27:16', '1', 'CNY', 10, 1, 10, 'Sector1', 1);
+INSERT INTO `transaction_records` VALUES (1, 'fake', '1', 10, '2022-08-25 16:27:16', '1', 'CNY', 10, 'buy', 10, 'Sector1', 1);
+INSERT INTO `transaction_records` VALUES (2, 'fake', '1', 10, '2022-08-29 10:04:39', '1', 'CNY', 10, 'buy', 20, 'Sector1', 1);
+INSERT INTO `transaction_records` VALUES (3, 'fake', '1', 10, '2022-08-29 10:55:02', '1', 'CNY', 10, 'buy', 30, 'Sector1', 1);
+INSERT INTO `transaction_records` VALUES (4, 'share2', '1', 10, '2022-08-29 22:45:11', '1', 'USD', 10, 'buy', 10, 'Sector2', 1);
+INSERT INTO `transaction_records` VALUES (5, 'fake', '1', 10, '2022-08-30 00:06:30', '1', 'CNY', 10, 'buy', 40, 'Sector1', 1);
+INSERT INTO `transaction_records` VALUES (6, 'fake', '1', 10, '2022-08-30 10:25:48', '1', 'CNY', 10, 'sell', 30, 'Sector1', 1);
 
 -- ----------------------------
 -- Table structure for user
@@ -144,7 +154,7 @@ CREATE TABLE `user`  (
   `logon_time` timestamp NULL DEFAULT NULL COMMENT '用户注册时间',
   `flag` int NULL DEFAULT NULL COMMENT '用户权限标志',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
