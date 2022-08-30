@@ -33,6 +33,7 @@ public class CodeGenerator {
                             .addInclude("shares")
                             .addInclude("user")
                             .addInclude("transaction_view")
+                            .addInclude("shares_history")
                             .serviceBuilder()
                             .formatServiceFileName("%sService")
                             .formatServiceImplFileName("%sServiceImpl")

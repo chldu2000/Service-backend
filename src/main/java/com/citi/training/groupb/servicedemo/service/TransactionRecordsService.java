@@ -2,8 +2,11 @@ package com.citi.training.groupb.servicedemo.service;
 
 import com.citi.training.groupb.servicedemo.entity.TransactionRecords;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.citi.training.groupb.servicedemo.entity.TransactionView;
 import com.citi.training.groupb.servicedemo.vo.TransactionRequest;
+import com.citi.training.groupb.servicedemo.vo.TransactionSummary;
+import com.citi.training.groupb.servicedemo.vo.TransactionView;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +18,8 @@ import com.citi.training.groupb.servicedemo.vo.TransactionRequest;
  */
 public interface TransactionRecordsService extends IService<TransactionRecords> {
     int insertOneTransaction(TransactionRequest transactionRequest);
+
+    List<TransactionView> getTransactionInTime(String timeGap);
+
+    TransactionSummary getTransactionSummaryInTime(String timeGap);
 }

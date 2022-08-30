@@ -1,6 +1,5 @@
 package com.citi.training.groupb.servicedemo.vo;
 
-import com.citi.training.groupb.servicedemo.entity.TransactionView;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
