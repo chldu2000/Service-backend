@@ -2,6 +2,7 @@ package com.citi.training.groupb.servicedemo.mapper;
 
 import com.citi.training.groupb.servicedemo.entity.Shares;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.citi.training.groupb.servicedemo.vo.SharesNumUpdate;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -14,5 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SharesMapper extends BaseMapper<Shares> {
-
+    void updateSharesNum(SharesNumUpdate sharesNumUpdate);
 }

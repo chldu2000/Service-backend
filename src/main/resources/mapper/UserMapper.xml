@@ -4,4 +4,7 @@
     <select id="selectByUserName" parameterType="string" resultType="com.citi.training.groupb.servicedemo.entity.User">
         SELECT * FROM user WHERE user_name = #{userName};
     </select>
+    <select id="selectByLoginName" parameterType="string" resultType="com.citi.training.groupb.servicedemo.entity.User">
+        SELECT * FROM user WHERE login_name = #{loginName};
+    </select>
 </mapper>

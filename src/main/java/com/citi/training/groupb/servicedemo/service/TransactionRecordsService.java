@@ -22,4 +22,5 @@ public interface TransactionRecordsService extends IService<TransactionRecords> 
     List<TransactionView> getTransactionInTime(String timeGap);
 
     TransactionSummary getTransactionSummaryInTime(String timeGap);
+
 }
