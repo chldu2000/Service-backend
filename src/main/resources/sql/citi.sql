@@ -11,7 +11,7 @@
  Target Server Version : 80029
  File Encoding         : 65001
 
- Date: 30/08/2022 10:29:00
+ Date: 31/08/2022 09:23:16
 */
 
 SET NAMES utf8mb4;
@@ -33,7 +33,7 @@ CREATE TABLE `exchange_rate`  (
 -- ----------------------------
 -- Records of exchange_rate
 -- ----------------------------
-INSERT INTO `exchange_rate` VALUES ('CNY', 'CNY', 'Yuan', 6.8);
+INSERT INTO `exchange_rate` VALUES ('CNY', '人民币元', '1元', 0.150134);
 INSERT INTO `exchange_rate` VALUES ('USD', 'USD', 'Dollar', 1);
 
 -- ----------------------------
@@ -73,7 +73,7 @@ CREATE TABLE `shares`  (
 -- ----------------------------
 -- Records of shares
 -- ----------------------------
-INSERT INTO `shares` VALUES ('fake', '不存在的企业', 1, 10, 'CNY', 10000, 100, 1);
+INSERT INTO `shares` VALUES ('fake', '不存在的企业', 1, 10, 'CNY', 9990, 100, 1);
 INSERT INTO `shares` VALUES ('share2', 'TESTNAME', 1, 20, 'USD', 10000, 120, 1);
 
 -- ----------------------------
@@ -84,7 +84,7 @@ CREATE TABLE `shares_class`  (
   `class_id` int NOT NULL AUTO_INCREMENT COMMENT '类别编号，自增',
   `class_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '类别名称',
   PRIMARY KEY (`class_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '股票所属行业类型表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '股票所属行业类型表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shares_class
@@ -103,7 +103,7 @@ CREATE TABLE `shares_history`  (
   `transaction_out` bigint NULL DEFAULT NULL COMMENT '股票当天总卖出数量',
   `record_date` date NULL DEFAULT NULL COMMENT '记录时间',
   PRIMARY KEY (`record_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '股票记录表（日结）' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '股票记录表（日结）' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shares_history
@@ -111,6 +111,8 @@ CREATE TABLE `shares_history`  (
 INSERT INTO `shares_history` VALUES (1, 'fake', 10, 10, 0, '2022-08-25');
 INSERT INTO `shares_history` VALUES (2, 'fake', 10, 20, 0, '2022-08-29');
 INSERT INTO `shares_history` VALUES (3, 'share2', 10, 10, 0, '2022-08-29');
+INSERT INTO `shares_history` VALUES (4, 'fake', 10, 10, 20, '2022-08-30');
+INSERT INTO `shares_history` VALUES (5, 'share2', 20, 0, 0, '2022-08-30');
 
 -- ----------------------------
 -- Table structure for transaction_records
@@ -141,6 +143,7 @@ INSERT INTO `transaction_records` VALUES (3, 'fake', '1', 10, '2022-08-29 10:55:
 INSERT INTO `transaction_records` VALUES (4, 'share2', '1', 10, '2022-08-29 22:45:11', '1', 'USD', 10, 'buy', 10, 'Sector2', 1);
 INSERT INTO `transaction_records` VALUES (5, 'fake', '1', 10, '2022-08-30 00:06:30', '1', 'CNY', 10, 'buy', 40, 'Sector1', 1);
 INSERT INTO `transaction_records` VALUES (6, 'fake', '1', 10, '2022-08-30 10:25:48', '1', 'CNY', 10, 'sell', 30, 'Sector1', 1);
+INSERT INTO `transaction_records` VALUES (7, 'fake', '1', 10, '2022-08-30 22:15:43', '1', 'CNY', 10, 'sell', 20, 'Sector1', 1);
 
 -- ----------------------------
 -- Table structure for user
@@ -150,7 +153,7 @@ CREATE TABLE `user`  (
   `user_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户id，唯一标识',
   `user_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '用户名字',
   `login_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '登陆用用户名',
-  `login_password` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '登陆密码\r\n',
+  `login_password` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '登陆密码\r\n',
   `logon_time` timestamp NULL DEFAULT NULL COMMENT '用户注册时间',
   `flag` int NULL DEFAULT NULL COMMENT '用户权限标志',
   PRIMARY KEY (`user_id`) USING BTREE
@@ -159,12 +162,12 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '用户1号', 'accountOne', 'qewqe', NULL, 1);
+INSERT INTO `user` VALUES ('1', 'user1', 'user1', '$2a$10$55naR8Odb9FKEVPYjrfq9O1ncNTErQJCF7b4ryWwXkKP6B3GUoRTu', NULL, 1);
 
 -- ----------------------------
 -- View structure for transaction_view
 -- ----------------------------
 DROP VIEW IF EXISTS `transaction_view`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `transaction_view` AS select cast(`records`.`transaction_time` as date) AS `date`,`users`.`user_name` AS `client_name`,`records`.`transaction_flag` AS `client_side`,`shares`.`shares_name` AS `ticker`,`shares`.`RIC` AS `ric`,`records`.`transaction_size` AS `size`,`records`.`transaction_price` AS `price`,(`records`.`transaction_price` / `exchange_rate`.`currency_rate`) AS `notional_usd`,`exchange_rate`.`currency_name` AS `currency`,`records`.`issuer_sector` AS `issuer_sector`,`salesman`.`salesman_name` AS `salesperson`,`records`.`transaction_mode` AS `ht_pt` from ((((`transaction_records` `records` join `user` `users`) join `shares`) join `exchange_rate`) join `salesman`) where ((`records`.`RIC` = `shares`.`RIC`) and (`records`.`user_id` = `users`.`user_id`) and (`records`.`salesman_id` = `salesman`.`salesman_id`) and (`records`.`currency_id` = `exchange_rate`.`currency_id`));
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `transaction_view` AS select cast(`records`.`transaction_time` as date) AS `date`,`users`.`user_name` AS `client_name`,`records`.`transaction_flag` AS `client_side`,`shares`.`shares_name` AS `ticker`,`shares`.`RIC` AS `ric`,`records`.`transaction_size` AS `size`,`records`.`transaction_price` AS `price`,(`records`.`transaction_price` * `exchange_rate`.`currency_rate`) AS `notional_usd`,`exchange_rate`.`currency_name` AS `currency`,`records`.`issuer_sector` AS `issuer_sector`,`salesman`.`salesman_name` AS `salesperson`,`records`.`transaction_mode` AS `ht_pt` from ((((`transaction_records` `records` join `user` `users`) join `shares`) join `exchange_rate`) join `salesman`) where ((`records`.`RIC` = `shares`.`RIC`) and (`records`.`user_id` = `users`.`user_id`) and (`records`.`salesman_id` = `salesman`.`salesman_id`) and (`records`.`currency_id` = `exchange_rate`.`currency_id`));
 
 SET FOREIGN_KEY_CHECKS = 1;
