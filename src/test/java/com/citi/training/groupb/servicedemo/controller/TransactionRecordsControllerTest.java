@@ -2,8 +2,6 @@ package com.citi.training.groupb.servicedemo.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.citi.training.groupb.servicedemo.vo.TransactionRequest;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,15 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 class TransactionRecordsControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
-
-//    @BeforeEach
-//    void setUp() {
-//    }
-//
-//    @AfterEach
-//    void tearDown() {
-//    }
+    MockMvc mockMvc;
 
     @Test
     void getTransactionView() throws Exception {
@@ -89,12 +79,12 @@ class TransactionRecordsControllerTest {
                 )
         );
         mockMvc.perform(
-                MockMvcRequestBuilders
-                        .post("/transaction_records")
-                        .content(json.getBytes())
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)
-        ).andExpect(MockMvcResultMatchers.status().isOk())
+                        MockMvcRequestBuilders
+                                .post("/transaction_records")
+                                .content(json.getBytes())
+                                .accept(MediaType.APPLICATION_JSON)
+                                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                ).andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(print());
     }
 }

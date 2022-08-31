@@ -19,4 +19,6 @@ public interface SharesMapper extends BaseMapper<Shares> {
     void updateSharesNum(SharesNumUpdate sharesNumUpdate);
 
     SharesPrice selectPriceByRic(String ric);
+
+    Shares selectByName(String ticker);
 }

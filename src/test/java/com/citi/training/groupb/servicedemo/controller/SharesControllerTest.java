@@ -14,23 +14,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class SharesHistoryControllerTest {
+class SharesControllerTest {
+
     @Autowired
     MockMvc mockMvc;
 
     @Test
-    void getTransactionHistory() throws Exception {
+    void getSharePrice() throws Exception {
         ResultActions resultActions = mockMvc.perform(
-                MockMvcRequestBuilders.get("/history")
-        );
-        resultActions.andReturn().getResponse().setCharacterEncoding("UTF-8");;
-        resultActions.andExpect(MockMvcResultMatchers.status().isOk()).andDo(print());
-    }
-
-    @Test
-    void getTransactionHistoryInPeriod() throws Exception {
-        ResultActions resultActions = mockMvc.perform(
-                MockMvcRequestBuilders.get("/history/1W")
+                MockMvcRequestBuilders.get("/shares/price/fake")
         );
         resultActions.andReturn().getResponse().setCharacterEncoding("UTF-8");;
         resultActions.andExpect(MockMvcResultMatchers.status().isOk()).andDo(print());

@@ -44,8 +44,10 @@ public class TransactionRecordsServiceImpl extends ServiceImpl<TransactionRecord
     public int insertOneTransaction(TransactionRequest transactionRequest) {
         // query user with username
         List<User> targetUser = userMapper.selectByUserName(transactionRequest.getClientName());
-        // query share with ric
-        Shares targetShare = sharesMapper.selectById(transactionRequest.getRic());
+        // query share with ric if ric is not null
+        Shares targetShare = (transactionRequest.getRic() == null || transactionRequest.getRic().isBlank()) ?
+            sharesMapper.selectByName(transactionRequest.getTicker()) :
+            sharesMapper.selectById(transactionRequest.getRic());
         // query currency with currency name
         List<ExchangeRate> targetExchangeRate = exchangeRateMapper.selectByCurrencyName(transactionRequest.getCurrency());
         // query salesman with name
