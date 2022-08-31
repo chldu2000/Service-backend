@@ -34,3 +34,6 @@ build/
 
 ### Auto generator output ###
 AutoGenerate/
+
+### build output ###
+out/

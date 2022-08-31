@@ -3,11 +3,8 @@ package com.citi.training.groupb.servicedemo.controller;
 import com.citi.training.groupb.servicedemo.result.Result;
 import com.citi.training.groupb.servicedemo.result.ResultResponse;
 import com.citi.training.groupb.servicedemo.service.SharesHistoryService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -25,11 +22,13 @@ public class SharesHistoryController {
         this.sharesHistoryService = sharesHistoryService;
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, path = "/history")
     public Result<Object> getTransactionSummary() {
         return ResultResponse.getSuccessResult(sharesHistoryService.getSummaryInTime("All"));
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, path ="/history/{timeGap}")
     public Result<Object> getTransactionSummary(@PathVariable String timeGap) {
         return ResultResponse.getSuccessResult(sharesHistoryService.getSummaryInTime(timeGap));

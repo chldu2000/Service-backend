@@ -3,6 +3,7 @@ package com.citi.training.groupb.servicedemo.vo;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Data
+@AllArgsConstructor
 public class TransactionRequest {
 
     @JsonProperty("client_name")

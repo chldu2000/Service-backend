@@ -34,10 +34,10 @@ public class TransactionView {
     private String clientName;
 
     /**
-     * 交易类型标志，买入1，卖出0
+     * 交易类型标志，buy or sell
      */
     @JsonProperty("client_side")
-    private Integer clientSide;
+    private String clientSide;
 
     /**
      * 股票名称

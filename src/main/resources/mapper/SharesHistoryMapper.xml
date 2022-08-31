@@ -8,9 +8,9 @@
                SUM(temp.cumulative_net) AS cumulative_net
         FROM(
             SELECT DATE(history.record_date) AS `date`,
-                   SUM(history.transaction_in) * shares.shares_price / exchange.currency_rate AS buy,
-                   SUM(history.transaction_out) * shares.shares_price / exchange.currency_rate AS sell,
-                   (SUM(history.transaction_in) - SUM(history.transaction_out)) * shares.shares_price / exchange.currency_rate AS cumulative_net
+                   SUM(history.transaction_in) * shares.shares_price * exchange.currency_rate AS buy,
+                   SUM(history.transaction_out) * shares.shares_price * exchange.currency_rate AS sell,
+                   (SUM(history.transaction_in) - SUM(history.transaction_out)) * shares.shares_price * exchange.currency_rate AS cumulative_net
             FROM ((shares_history AS history JOIN shares) JOIN exchange_rate AS exchange)
             WHERE DATE(record_date) > DATE(#{shartTime})
               AND history.RIC = shares.RIC
@@ -27,9 +27,9 @@
                SUM(temp.cumulative_net) AS cumulative_net
         FROM(
             SELECT DATE(history.record_date) AS `date`,
-                   SUM(history.transaction_in) * shares.shares_price / exchange.currency_rate AS buy,
-                   SUM(history.transaction_out) * shares.shares_price / exchange.currency_rate AS sell,
-                   (SUM(history.transaction_in) - SUM(history.transaction_out)) * shares.shares_price / exchange.currency_rate AS cumulative_net
+                   SUM(history.transaction_in) * shares.shares_price * exchange.currency_rate AS buy,
+                   SUM(history.transaction_out) * shares.shares_price * exchange.currency_rate AS sell,
+                   (SUM(history.transaction_in) - SUM(history.transaction_out)) * shares.shares_price * exchange.currency_rate AS cumulative_net
             FROM ((shares_history AS history JOIN shares) JOIN exchange_rate AS exchange)
             WHERE history.RIC = shares.RIC
               AND shares.currency_id = exchange.currency_id

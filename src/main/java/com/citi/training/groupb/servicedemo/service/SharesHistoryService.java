@@ -15,5 +15,9 @@ import java.util.List;
  * @since 2022-08-29
  */
 public interface SharesHistoryService extends IService<SharesHistory> {
+    void insertHistory(String date);
+
+    DailySummary getSummaryOfToday();
+
     List<DailySummary> getSummaryInTime(String timeGap);
 }

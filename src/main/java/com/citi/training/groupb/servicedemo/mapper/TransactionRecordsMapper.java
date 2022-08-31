@@ -22,4 +22,8 @@ public interface TransactionRecordsMapper extends BaseMapper<TransactionRecords>
     List<TransactionView> selectAll();
 
     List<TransactionView> selectAfterDate(String startTime);
+
+    Double selectLatestPrice(String ric, String date);
+
+    Long selectTradeSize(String ric, String date, String side);
 }
