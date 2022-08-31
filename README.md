@@ -114,6 +114,26 @@ Query transaction summary for all records:
 
 **GET**: `http://127.0.0.1:8081/transaction_records/summary`
 
+### Query share price by RIC
+
+For example, query price of share with RIC 'fake':
+
+**GET**: `http://127.0.0.1:8081/shares/price/fake`
+
+Response:
+
+```json
+{
+    "status": 200,
+    "message": "成功!",
+    "data": {
+        "ric": "fake",
+        "price": 10.0,
+        "currency_name": "人民币元"
+    }
+}
+```
+
 ### Insert a transaction record
 
 For example:
