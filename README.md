@@ -1,18 +1,23 @@
 # Service-backend
-Citi training 2022 summer
-this repository is build to save the backend code
+Citi training 2022 summer.
+
+This repository is build to save the backend code
 
 ## First step
 
 Please initialize database with [this sql file](./ServiceProvider/src/main/resources/sql/citi.sql) to generate data structures before you start the project.
 
+Run `EurekaServer`, `ServiceProvider`, and `ServiceCnsumer`.
+
 ## Request example
+
+Assume that `ServiceCnsumer` run on `localhost:8090`.
 
 ### Query transaction records in one day
 
 Query transaction record for a certain time period (such as 1 day):
 
-**GET**: `http://127.0.0.1:8081/transaction_records/1D`
+**GET**: `http://127.0.0.1:8090/transaction_records/1D`
 
 Response:
 
@@ -55,7 +60,7 @@ Response:
 
 Query transaction summary in 1 day:
 
-**GET**: `http://127.0.0.1:8081/transaction_records/summary/1D`
+**GET**: `http://127.0.0.1:8090/transaction_records/summary/1D`
 
 Response:
 
@@ -108,17 +113,17 @@ Others:
 
 Query all transaction records:
 
-**GET**: `http://127.0.0.1:8081/transaction_records`
+**GET**: `http://127.0.0.1:8090/transaction_records`
 
 Query transaction summary for all records:
 
-**GET**: `http://127.0.0.1:8081/transaction_records/summary`
+**GET**: `http://127.0.0.1:8090/transaction_records/summary`
 
 ### Query share price by RIC
 
 For example, query price of share with RIC 'fake':
 
-**GET**: `http://127.0.0.1:8081/shares/price/fake`
+**GET**: `http://127.0.0.1:8090/shares/price/fake`
 
 Response:
 
@@ -138,7 +143,7 @@ Response:
 
 For example:
 
-**POST**: `http://127.0.0.1:8081/transaction_records` with body:
+**POST**: `http://127.0.0.1:8090/transaction_records` with body:
 
 ```json
 {
@@ -169,11 +174,11 @@ Response:
 
 Query all chart data (history):
 
-**GET**: `http://127.0.0.1:8081/history`
+**GET**: `http://127.0.0.1:8090/history`
 
 Query all chart data for a certain time period (such as 1 day):
 
-**GET**: `http://127.0.0.1:8081/history/1D`
+**GET**: `http://127.0.0.1:8090/history/1D`
 
 Responses will be like:
 
