@@ -55,7 +55,6 @@ public class TransactionRecordsController {
             Result<Object> failedRes = new Result<>();
             failedRes.setStatus(ResultCode.BAD_REQUEST.getResultCode());
             String failedMsg = ResultCode.BAD_REQUEST.getResultMsg();
-            failedMsg += res;
             failedMsg += switch (res) {
                 case 1 -> " 请检查输入的 Client Name";
                 case 2 -> " 请检查输入的 RIC";

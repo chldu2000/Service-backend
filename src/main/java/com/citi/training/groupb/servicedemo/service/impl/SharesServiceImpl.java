@@ -5,6 +5,7 @@ import com.citi.training.groupb.servicedemo.entity.Shares;
 import com.citi.training.groupb.servicedemo.mapper.SharesMapper;
 import com.citi.training.groupb.servicedemo.service.SharesService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.citi.training.groupb.servicedemo.vo.SharesPrice;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -39,5 +40,10 @@ public class SharesServiceImpl extends ServiceImpl<SharesMapper, Shares> impleme
         QueryWrapper<Shares> wrapper = new QueryWrapper<>();
         wrapper.eq("shares_name", ticker);
         return sharesMapper.selectList(wrapper);
+    }
+
+    @Override
+    public SharesPrice getPriceByRic(String ric) {
+        return sharesMapper.selectPriceByRic(ric);
     }
 }

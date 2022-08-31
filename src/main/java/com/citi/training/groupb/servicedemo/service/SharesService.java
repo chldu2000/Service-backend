@@ -2,6 +2,7 @@ package com.citi.training.groupb.servicedemo.service;
 
 import com.citi.training.groupb.servicedemo.entity.Shares;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.citi.training.groupb.servicedemo.vo.SharesPrice;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface SharesService extends IService<Shares> {
     List<Shares> getShareByRIC(String shareRIC);
 
     List<Shares> getShareByTicker(String ticker);
+
+    SharesPrice getPriceByRic(String ric);
 }
