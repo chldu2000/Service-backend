@@ -1,0 +1,49 @@
+Manifest-Version: 1.0
+Main-Class: com.citi.training.groupb.serviceconsumer.ServiceConsumerAppl
+ ication
+Class-Path: woodstox-core-6.2.1.jar jackson-datatype-jsr310-2.13.3.jar s
+ pring-jcl-5.3.22.jar spring-boot-starter-tomcat-2.7.3.jar commons-jxpat
+ h-1.3.jar stringtemplate-3.2.1.jar feign-form-spring-3.8.0.jar fastjson
+ -2.0.12.jar joda-time-2.3.jar spring-cloud-context-3.1.3.jar servo-core
+ -0.12.21.jar mybatis-plus-generator-3.5.3.jar tomcat-embed-el-9.0.65.ja
+ r eureka-core-1.10.17.jar reactive-streams-1.0.4.jar spring-expression-
+ 5.3.22.jar fastjson2-2.0.12.jar mybatis-spring-2.0.7.jar spring-cloud-s
+ tarter-netflix-eureka-client-3.1.3.jar spring-boot-starter-jdbc-2.7.3.j
+ ar mysql-connector-java-8.0.30.jar eureka-client-1.10.17.jar hamcrest-2
+ .2.jar commons-lang-2.6.jar guava-19.0.jar spring-boot-starter-data-jdb
+ c-2.7.3.jar httpclient-4.5.13.jar spring-boot-starter-2.7.3.jar spring-
+ boot-starter-logging-2.7.3.jar jackson-databind-2.13.3.jar spring-data-
+ relational-2.4.2.jar antlr-runtime-3.4.jar commons-configuration-1.10.j
+ ar spring-beans-5.3.22.jar bcpkix-jdk15on-1.68.jar stax2-api-4.2.1.jar 
+ spring-cloud-openfeign-core-3.1.3.jar jakarta.annotation-api-1.3.5.jar 
+ jsr311-api-1.1.1.jar commons-fileupload-1.4.jar feign-core-11.8.jar bcp
+ rov-jdk15on-1.68.jar javax.inject-1.jar commons-io-2.2.jar hamcrest-cor
+ e-2.2.jar reactor-core-3.4.22.jar gson-2.9.1.jar spring-boot-starter-ao
+ p-2.7.3.jar spring-web-5.3.22.jar logback-classic-1.2.11.jar snakeyaml-
+ 1.30.jar kotlin-stdlib-common-1.6.21.jar mybatis-plus-extension-3.5.2.j
+ ar spring-jdbc-5.3.22.jar HikariCP-4.0.3.jar kotlin-stdlib-1.6.21.jar r
+ eactor-extra-3.4.8.jar log4j-api-2.17.2.jar netflix-eventbus-0.3.0.jar 
+ jackson-annotations-2.13.3.jar feign-form-3.8.0.jar spring-boot-2.7.3.j
+ ar logback-core-1.2.11.jar spring-boot-starter-json-2.7.3.jar httpcore-
+ 4.4.15.jar spring-context-5.3.22.jar guice-4.1.0.jar fastjson2-extensio
+ n-2.0.12.jar spring-boot-starter-web-2.7.3.jar jackson-core-2.13.3.jar 
+ spring-cloud-starter-3.1.3.jar mybatis-plus-3.5.2.jar spring-cloud-comm
+ ons-3.1.3.jar mybatis-plus-annotation-3.5.2.jar log4j-to-slf4j-2.17.2.j
+ ar freemarker-2.3.31.jar lombok-1.18.24.jar commons-math-2.2.jar mybati
+ s-3.5.10.jar jul-to-slf4j-1.7.36.jar commons-codec-1.15.jar spring-tx-5
+ .3.22.jar xmlpull-1.1.3.1.jar spring-boot-starter-cache-2.7.3.jar tomca
+ t-embed-websocket-9.0.65.jar aspectjweaver-1.9.7.jar netflix-infix-0.3.
+ 0.jar evictor-1.0.0.jar spring-data-commons-2.7.2.jar junit-4.13.2.jar 
+ kotlin-stdlib-jdk7-1.6.21.jar spring-cloud-netflix-eureka-client-3.1.3.
+ jar spring-core-5.3.22.jar mybatis-plus-core-3.5.2.jar spring-data-jdbc
+ -2.4.2.jar tomcat-embed-core-9.0.65.jar spring-security-rsa-1.0.10.RELE
+ ASE.jar spring-security-crypto-5.7.3.jar mxparser-1.2.2.jar mybatis-plu
+ s-boot-starter-3.5.2.jar spring-aop-5.3.22.jar spring-cloud-starter-ope
+ nfeign-3.1.3.jar spring-context-support-5.3.22.jar kotlin-stdlib-jdk8-1
+ .6.21.jar xstream-1.4.18.jar jsqlparser-4.4.jar jackson-module-paramete
+ r-names-2.13.3.jar spring-cloud-loadbalancer-3.1.3.jar jackson-datatype
+ -jdk8-2.13.3.jar antlr-2.7.7.jar slf4j-api-1.7.36.jar spring-webmvc-5.3
+ .22.jar annotations-13.0.jar spring-cloud-starter-loadbalancer-3.1.3.ja
+ r feign-slf4j-11.8.jar spring-boot-autoconfigure-2.7.3.jar jettison-1.4
+ .0.jar
+

@@ -7,11 +7,11 @@ This repository is build to save the backend code
 
 Please initialize database with [this sql file](./ServiceProvider/src/main/resources/sql/citi.sql) to generate data structures before you start the project.
 
-Run `EurekaServer`, `ServiceProvider`, and `ServiceCnsumer`.
+Run `EurekaServer`, `ServiceProvider` and `ServiceCnsumer`.
 
 ## Request example
 
-Assume that `ServiceCnsumer` run on `localhost:8090`.
+Assume that `ServiceCnsumer` runs on `localhost:8090`.
 
 ### Query transaction records in one day
 
