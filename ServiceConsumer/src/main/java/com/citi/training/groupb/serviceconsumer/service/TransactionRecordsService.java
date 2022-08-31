@@ -1,16 +1,26 @@
 package com.citi.training.groupb.serviceconsumer.service;
 
-import com.citi.training.groupb.serviceconsumer.result.Result;
+import com.citi.training.groupb.serviceprovider.result.Result;
+import com.citi.training.groupb.serviceprovider.vo.TransactionRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-@FeignClient("eureka-provider")
+@FeignClient(name = "eureka-provider", contextId = "TransactionRecordsService")
 @Service
 public interface TransactionRecordsService {
-    @GetMapping("/transaction_records")
+    @RequestMapping(method = RequestMethod.GET, path = "/transaction_records")
     Result<Object> getTransactionView();
+
+    @RequestMapping(method = RequestMethod.GET, path = "/transaction_records/{timeGap}")
+    Result<Object> getTransactionView(@PathVariable String timeGap);
+
+    @RequestMapping(method = RequestMethod.GET, path = "/transaction_records/summary")
+    Result<Object> getTransactionSummary();
+
+    @RequestMapping(method = RequestMethod.GET, path = "/transaction_records/summary/{timeGap}")
+    Result<Object> getTransactionSummary(@PathVariable String timeGap);
+
+    @RequestMapping(method = RequestMethod.POST, path = "/transaction_records")
+    Result<Object> insertOneTransaction(@RequestBody TransactionRequest transactionRequest);
 }

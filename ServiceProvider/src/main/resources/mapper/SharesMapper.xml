@@ -13,7 +13,7 @@
         FROM shares JOIN exchange_rate ON shares.currency_id = exchange_rate.currency_id
         WHERE shares.RIC = #{ric};
     </select>
-    <select id="selectByName" parameterType="string" resultType="com.citi.training.groupb.servicedemo.entity.Shares">
+    <select id="selectByName" parameterType="string" resultType="com.citi.training.groupb.serviceprovider.entity.Shares">
         SELECT *
         FROM shares
         WHERE shares_name = #{ticker}
