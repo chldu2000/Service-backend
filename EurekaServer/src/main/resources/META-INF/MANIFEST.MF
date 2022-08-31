@@ -1,0 +1,42 @@
+Manifest-Version: 1.0
+Main-Class: com.citi.training.groupb.eurekaserver.EurekaServerApplicatio
+ n
+Class-Path: tomcat-embed-core-9.0.65.jar spring-context-5.3.22.jar commo
+ ns-configuration-1.10.jar woodstox-core-6.2.1.jar tomcat-embed-el-9.0.6
+ 5.jar joda-time-2.3.jar spring-cloud-starter-3.1.3.jar jettison-1.4.0.j
+ ar spring-aop-5.3.22.jar spring-jcl-5.3.22.jar eureka-client-1.10.17.ja
+ r spring-boot-starter-cache-2.7.3.jar servo-core-0.12.21.jar jersey-apa
+ che-client4-1.19.1.jar spring-boot-starter-tomcat-2.7.3.jar bcprov-jdk1
+ 5on-1.68.jar spring-boot-starter-2.7.3.jar eureka-core-1.10.17.jar spri
+ ng-cloud-starter-loadbalancer-3.1.3.jar logback-classic-1.2.11.jar jack
+ son-datatype-jdk8-2.13.3.jar stax2-api-4.2.1.jar log4j-api-2.17.2.jar L
+ atencyUtils-2.0.3.jar netflix-infix-0.3.0.jar spring-boot-autoconfigure
+ -2.7.3.jar jersey-client-1.19.4.jar jackson-core-2.13.3.jar reactor-ext
+ ra-3.4.8.jar commons-codec-1.15.jar commons-jxpath-1.3.jar jaxb-runtime
+ -2.3.6.jar spring-boot-actuator-2.7.3.jar stringtemplate-3.2.1.jar http
+ core-4.4.15.jar spring-webmvc-5.3.22.jar xstream-1.4.18.jar tomcat-embe
+ d-websocket-9.0.65.jar bcpkix-jdk15on-1.68.jar spring-cloud-commons-3.1
+ .3.jar spring-boot-starter-actuator-2.7.3.jar jul-to-slf4j-1.7.36.jar s
+ pring-expression-5.3.22.jar jackson-module-parameter-names-2.13.3.jar j
+ akarta.xml.bind-api-2.3.3.jar evictor-1.0.0.jar spring-security-crypto-
+ 5.7.3.jar jakarta.activation-1.2.2.jar antlr-2.7.7.jar jackson-annotati
+ ons-2.13.3.jar jackson-databind-2.13.3.jar spring-web-5.3.22.jar spring
+ -boot-starter-logging-2.7.3.jar reactor-core-3.4.22.jar guava-19.0.jar 
+ spring-boot-starter-freemarker-2.7.3.jar spring-core-5.3.22.jar jackson
+ -datatype-jsr310-2.13.3.jar antlr-runtime-3.4.jar spring-beans-5.3.22.j
+ ar spring-security-rsa-1.0.10.RELEASE.jar log4j-to-slf4j-2.17.2.jar jer
+ sey-server-1.19.4.jar commons-lang-2.6.jar istack-commons-runtime-3.0.1
+ 2.jar spring-cloud-netflix-eureka-server-3.1.3.jar spring-cloud-context
+ -3.1.3.jar gson-2.9.1.jar guice-4.1.0.jar logback-core-1.2.11.jar httpc
+ lient-4.5.13.jar spring-cloud-starter-netflix-eureka-server-3.1.3.jar m
+ icrometer-core-1.9.3.jar spring-boot-2.7.3.jar spring-context-support-5
+ .3.22.jar spring-boot-actuator-autoconfigure-2.7.3.jar xmlpull-1.1.3.1.
+ jar txw2-2.3.6.jar jakarta.annotation-api-1.3.5.jar spring-cloud-loadba
+ lancer-3.1.3.jar snakeyaml-1.30.jar freemarker-2.3.31.jar HdrHistogram-
+ 2.1.12.jar javax.inject-1.jar jackson-dataformat-xml-2.13.3.jar slf4j-a
+ pi-1.7.36.jar spring-boot-starter-web-2.7.3.jar reactive-streams-1.0.4.
+ jar jakarta.activation-api-1.2.2.jar jersey-core-1.19.1.jar spring-boot
+ -starter-json-2.7.3.jar commons-math-2.2.jar jersey-servlet-1.19.4.jar 
+ jsr311-api-1.1.1.jar netflix-eventbus-0.3.0.jar mxparser-1.2.2.jar spri
+ ng-cloud-netflix-eureka-client-3.1.3.jar
+

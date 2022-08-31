@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.citi.training.groupb.serviceprovider.mapper.SharesMapper">
+    <update id="updateSharesNum" parameterType="com.citi.training.groupb.serviceprovider.vo.SharesNumUpdate">
+        UPDATE shares
+        SET shares_num=#{newNum}
+        WHERE shares.RIC=#{ric};
+    </update>
+    <select id="selectPriceByRic" parameterType="string" resultType="com.citi.training.groupb.serviceprovider.vo.SharesPrice">
+        SELECT shares.RIC AS ric,
+               shares.shares_price as price,
+               exchange_rate.currency_name as currencyName
+        FROM shares JOIN exchange_rate ON shares.currency_id = exchange_rate.currency_id
+        WHERE shares.RIC = #{ric};
+    </select>
+    <select id="selectByName" parameterType="string" resultType="com.citi.training.groupb.servicedemo.entity.Shares">
+        SELECT *
+        FROM shares
+        WHERE shares_name = #{ticker}
+            LIMIT 1;
+    </select>
+</mapper>
