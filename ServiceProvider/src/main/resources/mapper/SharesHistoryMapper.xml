@@ -1,40 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.citi.training.groupb.serviceprovider.mapper.SharesHistoryMapper">
+    <select id="selectAll" resultType="com.citi.training.groupb.serviceprovider.vo.DailySummary">
+--         SELECT temp.`date` AS `date`,
+--                SUM(temp.buy) AS buy,
+--                SUM(temp.sell) AS sell,
+--                SUM(temp.cumulative_net) AS cumulative_net
+--         FROM(
+--             SELECT DATE(history.record_date) AS `date`,
+--                    SUM(history.transaction_in) * shares.shares_price * exchange.currency_rate AS buy,
+--                    SUM(history.transaction_out) * shares.shares_price * exchange.currency_rate AS sell,
+--                    (SUM(history.transaction_in) - SUM(history.transaction_out)) * shares.shares_price * exchange.currency_rate AS cumulative_net
+--             FROM ((shares_history AS history JOIN shares) JOIN exchange_rate AS exchange)
+--             WHERE history.RIC = shares.RIC
+--               AND shares.currency_id = exchange.currency_id
+--             GROUP BY DATE(record_date), history.RIC
+--         ) AS temp
+--         GROUP BY `date`;
+            -- 以美元为 closing_price 后不需要汇率来计算 buy 和 sell
+            SELECT temp.`date` AS `date`,
+                   SUM(temp.buy) AS buy,
+                   SUM(temp.sell) AS sell,
+                   SUM(temp.buy) - SUM(temp.sell) AS cumulative_net
+            FROM(
+                SELECT DATE(shares_history.record_date) AS `date`,
+                       SUM(shares_history.transaction_in * shares_history.closing_price) AS buy,
+                       SUM(shares_history.transaction_out * shares_history.closing_price) AS sell
+                FROM shares_history
+                GROUP BY DATE(shares_history.record_date), shares_history.RIC
+                ) AS temp
+            GROUP BY `date`;
+    </select>
     <select id="selectDailySummary" parameterType="string" resultType="com.citi.training.groupb.serviceprovider.vo.DailySummary">
         SELECT temp.`date` AS `date`,
                SUM(temp.buy) AS buy,
                SUM(temp.sell) AS sell,
-               SUM(temp.cumulative_net) AS cumulative_net
+               SUM(temp.buy) - SUM(temp.sell) AS cumulative_net
         FROM(
-            SELECT DATE(history.record_date) AS `date`,
-                   SUM(history.transaction_in) * shares.shares_price * exchange.currency_rate AS buy,
-                   SUM(history.transaction_out) * shares.shares_price * exchange.currency_rate AS sell,
-                   (SUM(history.transaction_in) - SUM(history.transaction_out)) * shares.shares_price * exchange.currency_rate AS cumulative_net
-            FROM ((shares_history AS history JOIN shares) JOIN exchange_rate AS exchange)
-            WHERE DATE(record_date) > DATE(#{shartTime})
-              AND history.RIC = shares.RIC
-              AND shares.currency_id = exchange.currency_id
-            GROUP BY DATE(record_date), history.RIC
-        ) AS temp
-        GROUP BY `date`;
-    </select>
-
-    <select id="selectAll" resultType="com.citi.training.groupb.serviceprovider.vo.DailySummary">
-        SELECT temp.`date` AS `date`,
-               SUM(temp.buy) AS buy,
-               SUM(temp.sell) AS sell,
-               SUM(temp.cumulative_net) AS cumulative_net
-        FROM(
-            SELECT DATE(history.record_date) AS `date`,
-                   SUM(history.transaction_in) * shares.shares_price * exchange.currency_rate AS buy,
-                   SUM(history.transaction_out) * shares.shares_price * exchange.currency_rate AS sell,
-                   (SUM(history.transaction_in) - SUM(history.transaction_out)) * shares.shares_price * exchange.currency_rate AS cumulative_net
-            FROM ((shares_history AS history JOIN shares) JOIN exchange_rate AS exchange)
-            WHERE history.RIC = shares.RIC
-              AND shares.currency_id = exchange.currency_id
-            GROUP BY DATE(record_date), history.RIC
-        ) AS temp
+            SELECT DATE(shares_history.record_date) AS `date`,
+                   SUM(shares_history.transaction_in * shares_history.closing_price) AS buy,
+                   SUM(shares_history.transaction_out * shares_history.closing_price) AS sell
+            FROM shares_history
+            WHERE DATE(shares_history.record_date) > DATE(#{shartTime})
+            GROUP BY DATE(shares_history.record_date), shares_history.RIC
+            ) AS temp
         GROUP BY `date`;
     </select>
 </mapper>

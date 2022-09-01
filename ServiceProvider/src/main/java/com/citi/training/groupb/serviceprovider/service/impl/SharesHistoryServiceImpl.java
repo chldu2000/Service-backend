@@ -1,14 +1,17 @@
 package com.citi.training.groupb.serviceprovider.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.citi.training.groupb.serviceprovider.entity.ExchangeRate;
 import com.citi.training.groupb.serviceprovider.entity.Shares;
 import com.citi.training.groupb.serviceprovider.entity.SharesHistory;
+import com.citi.training.groupb.serviceprovider.mapper.ExchangeRateMapper;
 import com.citi.training.groupb.serviceprovider.mapper.SharesHistoryMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.citi.training.groupb.serviceprovider.mapper.SharesMapper;
 import com.citi.training.groupb.serviceprovider.mapper.TransactionRecordsMapper;
 import com.citi.training.groupb.serviceprovider.service.SharesHistoryService;
 import com.citi.training.groupb.serviceprovider.vo.DailySummary;
+import com.citi.training.groupb.serviceprovider.vo.SharesPrice;
 import com.citi.training.groupb.serviceprovider.vo.TransactionView;
 import org.springframework.stereotype.Service;
 
@@ -33,10 +36,13 @@ public class SharesHistoryServiceImpl extends ServiceImpl<SharesHistoryMapper, S
 
     private final TransactionRecordsMapper transactionRecordsMapper;
 
-    public SharesHistoryServiceImpl(SharesMapper sharesMapper, SharesHistoryMapper sharesHistoryMapper, TransactionRecordsMapper transactionRecordsMapper) {
+    private final ExchangeRateMapper exchangeRateMapper;
+
+    public SharesHistoryServiceImpl(SharesMapper sharesMapper, SharesHistoryMapper sharesHistoryMapper, TransactionRecordsMapper transactionRecordsMapper, ExchangeRateMapper exchangeRateMapper) {
         this.sharesMapper = sharesMapper;
         this.sharesHistoryMapper = sharesHistoryMapper;
         this.transactionRecordsMapper = transactionRecordsMapper;
+        this.exchangeRateMapper = exchangeRateMapper;
     }
 
     @Override
@@ -46,8 +52,10 @@ public class SharesHistoryServiceImpl extends ServiceImpl<SharesHistoryMapper, S
         for (Shares shares : sharesList) {
             SharesHistory history = new SharesHistory(null, shares.getRic(), 0.0, (long)0, (long)0, LocalDate.parse(date));
 
+            // use USD in closing price
+            ExchangeRate rate = exchangeRateMapper.selectById(shares.getCurrencyId());
             Double closingPrice = transactionRecordsMapper.selectLatestPrice(shares.getRic(), date);
-            history.setClosingPrice(closingPrice == null ? shares.getSharesPrice() : closingPrice);
+            history.setClosingPrice((closingPrice == null ? shares.getSharesPrice() : closingPrice) * rate.getCurrencyRate());
 
             Long inSize = transactionRecordsMapper.selectTradeSize(shares.getRic(), date, "buy");
             Long outSize = transactionRecordsMapper.selectTradeSize(shares.getRic(), date, "sell");

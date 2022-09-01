@@ -40,7 +40,7 @@ public class SharesHistory implements Serializable {
     private String ric;
 
     /**
-     * 股票当天收盘价
+     * 股票当天收盘价，以美元计算
      */
     @TableField("closing_price")
     private Double closingPrice;

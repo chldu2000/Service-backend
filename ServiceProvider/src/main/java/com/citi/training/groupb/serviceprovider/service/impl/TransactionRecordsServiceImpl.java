@@ -63,13 +63,17 @@ public class TransactionRecordsServiceImpl extends ServiceImpl<TransactionRecord
         } else if (targetShare.getSharesFlag() == 0) {
             // target share should be trade-able
             return 5;
+        } else if (transactionRequest.getSize() == null || transactionRequest.getSize() < 1 || transactionRequest.getClientSide() == null) {
+            return 6;
+        } else if (transactionRequest.getIssuerSector() == null || transactionRequest.getIssuerSector().isBlank()) {
+            return 7;
         }
         // shares hold by "targetUser" should be less than "trade_limit"
         Long sharesHold = transactionRecordsMapper.selectHoldByUser(targetShare.getRic(), targetUser.get(0).getUserId());
         sharesHold = sharesHold == null ? 0 : sharesHold;
         Long sizeToTrade = transactionRequest.getSize().longValue() * (transactionRequest.getClientSide().equals("buy") ? 1 : -1);
         if (sharesHold + sizeToTrade > targetShare.getTradeLimit() || sharesHold + sizeToTrade < 0 || targetShare.getSharesNum() - sizeToTrade < 1) {
-            return 6;
+            return 8;
         }
         // optional: compare "ticker" input with "shares_name" in targetShare
         // Update shares_num
