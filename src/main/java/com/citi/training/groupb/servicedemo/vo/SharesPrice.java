@@ -7,8 +7,13 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class SharesPrice {
+    @JsonProperty("ric")
     String ric;
 
+    @JsonProperty("shares_name")
+    String sharesName;
+
+    @JsonProperty("price")
     Double price;
 
     @JsonProperty("currency_name")
