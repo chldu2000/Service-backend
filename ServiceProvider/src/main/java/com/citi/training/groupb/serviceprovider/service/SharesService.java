@@ -15,9 +15,6 @@ import java.util.List;
  * @since 2022-06-25
  */
 public interface SharesService extends IService<Shares> {
-    List<Shares> getShareByRIC(String shareRIC);
-
-    List<Shares> getShareByTicker(String ticker);
 
     SharesPrice getPriceByRic(String ric);
 }

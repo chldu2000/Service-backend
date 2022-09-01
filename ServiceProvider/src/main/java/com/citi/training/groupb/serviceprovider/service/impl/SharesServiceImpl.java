@@ -28,20 +28,6 @@ public class SharesServiceImpl extends ServiceImpl<SharesMapper, Shares> impleme
     }
 
     @Override
-    public List<Shares> getShareByRIC(String shareRIC) {
-        List<Shares> sharesList = new ArrayList<>();
-        sharesList.add(sharesMapper.selectById(shareRIC));
-        return sharesList;
-    }
-
-    @Override
-    public List<Shares> getShareByTicker(String ticker) {
-        QueryWrapper<Shares> wrapper = new QueryWrapper<>();
-        wrapper.eq("shares_name", ticker);
-        return sharesMapper.selectList(wrapper);
-    }
-
-    @Override
     public SharesPrice getPriceByRic(String ric) {
         return sharesMapper.selectPriceByRic(ric);
     }

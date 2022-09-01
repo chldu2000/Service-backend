@@ -4,6 +4,7 @@ import com.citi.training.groupb.serviceprovider.result.Result;
 import com.citi.training.groupb.serviceprovider.result.ResultCode;
 import com.citi.training.groupb.serviceprovider.result.ResultResponse;
 import com.citi.training.groupb.serviceprovider.service.TransactionRecordsService;
+import com.citi.training.groupb.serviceprovider.vo.NLPTransactionRequest;
 import com.citi.training.groupb.serviceprovider.vo.TransactionRequest;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,6 +65,26 @@ public class TransactionRecordsController {
                 case 6 -> " 请检查输入的 Size";
                 case 7 -> " 请检查输入的 Issuer Sector";
                 case 8 -> " 超过个人持有限额";
+                default -> "";
+            };
+            failedRes.setMessage(failedMsg);
+            return failedRes;
+        }
+        return ResultResponse.getSuccessResult();
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST, path = "/transaction_records/nlp")
+    public Result<Object> insertOneTransaction(@RequestBody NLPTransactionRequest transactionRequest) {
+        int res = transactionRecordsService.insertOneNLPTransaction(transactionRequest);
+        if (res > 0) {
+            Result<Object> failedRes = new Result<>();
+            failedRes.setStatus(ResultCode.BAD_REQUEST.getResultCode());
+            String failedMsg = ResultCode.BAD_REQUEST.getResultMsg();
+            failedMsg += switch (res) {
+                case 1 -> " 请检查输入信息中包含的 ticker";
+                case 2 -> " 请检查输入信息中包含的 size";
+                case 3 -> " 超过个人持有限额";
                 default -> "";
             };
             failedRes.setMessage(failedMsg);

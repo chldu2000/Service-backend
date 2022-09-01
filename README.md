@@ -170,6 +170,30 @@ Response:
 }
 ```
 
+### Insert a transaction record with nlp results
+
+For example:
+
+**POST**: `http://127.0.0.1:8090/transaction_records/nlp` with a `body`, which is returned by our NLP service:
+
+```json
+{
+  "client_side": "sell",
+  "ticker": "ABST",
+  "size": 10
+}
+```
+
+Response:
+
+```json
+{
+    "status": 200,
+    "message": "成功!",
+    "data": null
+}
+```
+
 ### Get chart data: buy, sell... each day
 
 Query all chart data (history):

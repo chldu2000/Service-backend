@@ -2,6 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.citi.training.groupb.serviceprovider.mapper.ExchangeRateMapper">
     <select id="selectByCurrencyName" parameterType="string" resultType="com.citi.training.groupb.serviceprovider.entity.ExchangeRate">
-        SELECT * FROM exchange_rate WHERE currency_name = #{currencyName};
+        SELECT * FROM exchange_rate WHERE currency_name = #{currencyName} LIMIT 1;
     </select>
 </mapper>

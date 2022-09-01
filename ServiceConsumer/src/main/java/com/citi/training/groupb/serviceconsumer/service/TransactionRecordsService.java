@@ -1,6 +1,7 @@
 package com.citi.training.groupb.serviceconsumer.service;
 
 import com.citi.training.groupb.serviceprovider.result.Result;
+import com.citi.training.groupb.serviceprovider.vo.NLPTransactionRequest;
 import com.citi.training.groupb.serviceprovider.vo.TransactionRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
@@ -23,4 +24,7 @@ public interface TransactionRecordsService {
 
     @RequestMapping(method = RequestMethod.POST, path = "/transaction_records")
     Result<Object> insertOneTransaction(@RequestBody TransactionRequest transactionRequest);
+
+    @RequestMapping(method = RequestMethod.POST, path = "/transaction_records/nlp")
+    Result<Object> insertOneNLPTransaction(@RequestBody NLPTransactionRequest transactionRequest);
 }

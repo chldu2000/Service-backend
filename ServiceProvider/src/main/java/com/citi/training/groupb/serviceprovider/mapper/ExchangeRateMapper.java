@@ -16,5 +16,5 @@ import java.util.List;
  */
 @Mapper
 public interface ExchangeRateMapper extends BaseMapper<ExchangeRate> {
-    List<ExchangeRate> selectByCurrencyName(String currencyName);
+    ExchangeRate selectByCurrencyName(String currencyName);
 }

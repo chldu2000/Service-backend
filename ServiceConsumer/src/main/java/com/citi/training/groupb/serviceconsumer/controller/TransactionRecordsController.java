@@ -2,6 +2,7 @@ package com.citi.training.groupb.serviceconsumer.controller;
 
 import com.citi.training.groupb.serviceprovider.result.Result;
 import com.citi.training.groupb.serviceconsumer.service.TransactionRecordsService;
+import com.citi.training.groupb.serviceprovider.vo.NLPTransactionRequest;
 import com.citi.training.groupb.serviceprovider.vo.TransactionRequest;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,5 +43,11 @@ public class TransactionRecordsController {
     @RequestMapping(method = RequestMethod.POST, path = "/transaction_records")
     public Result<Object> insertOneTransaction(@RequestBody TransactionRequest transactionRequest) {
         return transactionRecordsService.insertOneTransaction(transactionRequest);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST, path = "/transaction_records/nlp")
+    public Result<Object> insertOneNLPTransaction(@RequestBody NLPTransactionRequest transactionRequest) {
+        return transactionRecordsService.insertOneNLPTransaction(transactionRequest);
     }
 }

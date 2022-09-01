@@ -16,5 +16,7 @@ import java.util.List;
  */
 @Mapper
 public interface SalesmanMapper extends BaseMapper<Salesman> {
-    List<Salesman> selectByName(String salesmanName);
+    Salesman selectByName(String salesmanName);
+
+    Salesman selectFirstSalesman();
 }

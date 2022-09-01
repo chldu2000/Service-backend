@@ -2,6 +2,7 @@ package com.citi.training.groupb.serviceprovider.service;
 
 import com.citi.training.groupb.serviceprovider.entity.TransactionRecords;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.citi.training.groupb.serviceprovider.vo.NLPTransactionRequest;
 import com.citi.training.groupb.serviceprovider.vo.TransactionRequest;
 import com.citi.training.groupb.serviceprovider.vo.TransactionSummary;
 import com.citi.training.groupb.serviceprovider.vo.TransactionView;
@@ -18,6 +19,8 @@ import java.util.List;
  */
 public interface TransactionRecordsService extends IService<TransactionRecords> {
     int insertOneTransaction(TransactionRequest transactionRequest);
+
+    int insertOneNLPTransaction(NLPTransactionRequest transactionRequest);
 
     List<TransactionView> getTransactionInTime(String timeGap);
 
