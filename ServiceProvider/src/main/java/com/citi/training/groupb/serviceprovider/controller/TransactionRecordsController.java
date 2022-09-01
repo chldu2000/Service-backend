@@ -61,7 +61,7 @@ public class TransactionRecordsController {
                 case 3 -> " 请检查输入的 Currency";
                 case 4 -> " 请检查输入的 Salesman";
                 case 5 -> " 目标股票当前不可交易";
-                case 6 -> " 请检查输入的 Size 和 Client Side";
+                case 6 -> " 请检查输入的 Size";
                 case 7 -> " 请检查输入的 Issuer Sector";
                 case 8 -> " 超过个人持有限额";
                 default -> "";

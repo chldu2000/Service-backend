@@ -63,7 +63,7 @@ public class TransactionRecordsServiceImpl extends ServiceImpl<TransactionRecord
         } else if (targetShare.getSharesFlag() == 0) {
             // target share should be trade-able
             return 5;
-        } else if (transactionRequest.getSize() == null || transactionRequest.getSize() < 1 || transactionRequest.getClientSide() == null) {
+        } else if (transactionRequest.getSize() == null || transactionRequest.getSize() < 1) {
             return 6;
         } else if (transactionRequest.getIssuerSector() == null || transactionRequest.getIssuerSector().isBlank()) {
             return 7;
