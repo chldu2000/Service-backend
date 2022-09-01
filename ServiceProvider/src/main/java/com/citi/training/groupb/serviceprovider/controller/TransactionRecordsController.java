@@ -58,8 +58,8 @@ public class TransactionRecordsController {
             failedMsg += switch (res) {
                 case 1 -> " 请检查输入的 Client Name";
                 case 2 -> " 请检查输入的 RIC";
-                case 3 -> " 请检查输入的 Salesman";
-                case 4 -> " 请检查输入的 Currency";
+                case 3 -> " 请检查输入的 Currency";
+                case 4 -> " 请检查输入的 Salesman";
                 case 5 -> " 目标股票当前不可交易";
                 case 6 -> " 超过个人持有限额";
                 default -> "";
