@@ -2,8 +2,8 @@ package com.citi.training.groupb.serviceconsumer.controller;
 
 import com.citi.training.groupb.serviceprovider.result.Result;
 import com.citi.training.groupb.serviceconsumer.service.TransactionRecordsService;
-import com.citi.training.groupb.serviceprovider.vo.NLPTransactionRequest;
-import com.citi.training.groupb.serviceprovider.vo.TransactionRequest;
+import com.citi.training.groupb.serviceprovider.vo.request.NLPTransactionRequest;
+import com.citi.training.groupb.serviceprovider.vo.request.TransactionRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

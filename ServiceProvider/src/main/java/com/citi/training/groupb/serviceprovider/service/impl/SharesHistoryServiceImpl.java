@@ -10,9 +10,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.citi.training.groupb.serviceprovider.mapper.SharesMapper;
 import com.citi.training.groupb.serviceprovider.mapper.TransactionRecordsMapper;
 import com.citi.training.groupb.serviceprovider.service.SharesHistoryService;
-import com.citi.training.groupb.serviceprovider.vo.DailySummary;
-import com.citi.training.groupb.serviceprovider.vo.SharesPrice;
-import com.citi.training.groupb.serviceprovider.vo.TransactionView;
+import com.citi.training.groupb.serviceprovider.vo.response.DailySummary;
+import com.citi.training.groupb.serviceprovider.vo.response.TransactionView;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;

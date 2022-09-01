@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.citi.training.groupb.serviceprovider.mapper.SharesMapper">
-    <update id="updateSharesNum" parameterType="com.citi.training.groupb.serviceprovider.vo.SharesNumUpdate">
+    <update id="updateSharesNum" parameterType="com.citi.training.groupb.serviceprovider.vo.request.SharesNumUpdate">
         UPDATE shares
         SET shares_num=#{newNum}
         WHERE shares.RIC=#{ric};
     </update>
-    <select id="selectPriceByRic" parameterType="string" resultType="com.citi.training.groupb.serviceprovider.vo.SharesPrice">
+    <select id="selectPriceByRic" parameterType="string" resultType="com.citi.training.groupb.serviceprovider.vo.response.SharesPrice">
         SELECT shares.RIC AS ric,
                shares.shares_name AS sharesName,
                shares.shares_price as price,

@@ -1,4 +1,4 @@
-package com.citi.training.groupb.serviceprovider.vo;
+package com.citi.training.groupb.serviceprovider.vo.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

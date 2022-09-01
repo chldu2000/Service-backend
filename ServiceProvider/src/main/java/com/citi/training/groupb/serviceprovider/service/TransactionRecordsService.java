@@ -2,10 +2,10 @@ package com.citi.training.groupb.serviceprovider.service;
 
 import com.citi.training.groupb.serviceprovider.entity.TransactionRecords;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.citi.training.groupb.serviceprovider.vo.NLPTransactionRequest;
-import com.citi.training.groupb.serviceprovider.vo.TransactionRequest;
-import com.citi.training.groupb.serviceprovider.vo.TransactionSummary;
-import com.citi.training.groupb.serviceprovider.vo.TransactionView;
+import com.citi.training.groupb.serviceprovider.vo.request.NLPTransactionRequest;
+import com.citi.training.groupb.serviceprovider.vo.request.TransactionRequest;
+import com.citi.training.groupb.serviceprovider.vo.response.TransactionSummary;
+import com.citi.training.groupb.serviceprovider.vo.response.TransactionView;
 
 import java.util.List;
 

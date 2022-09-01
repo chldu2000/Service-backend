@@ -2,8 +2,8 @@ package com.citi.training.groupb.serviceprovider.mapper;
 
 import com.citi.training.groupb.serviceprovider.entity.Shares;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.citi.training.groupb.serviceprovider.vo.SharesNumUpdate;
-import com.citi.training.groupb.serviceprovider.vo.SharesPrice;
+import com.citi.training.groupb.serviceprovider.vo.request.SharesNumUpdate;
+import com.citi.training.groupb.serviceprovider.vo.response.SharesPrice;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

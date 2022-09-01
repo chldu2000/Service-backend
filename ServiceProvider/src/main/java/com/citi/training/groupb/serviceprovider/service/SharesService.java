@@ -2,9 +2,7 @@ package com.citi.training.groupb.serviceprovider.service;
 
 import com.citi.training.groupb.serviceprovider.entity.Shares;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.citi.training.groupb.serviceprovider.vo.SharesPrice;
-
-import java.util.List;
+import com.citi.training.groupb.serviceprovider.vo.response.SharesPrice;
 
 /**
  * <p>

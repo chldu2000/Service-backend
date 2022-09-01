@@ -1,4 +1,4 @@
-package com.citi.training.groupb.serviceprovider.vo;
+package com.citi.training.groupb.serviceprovider.vo.response;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;

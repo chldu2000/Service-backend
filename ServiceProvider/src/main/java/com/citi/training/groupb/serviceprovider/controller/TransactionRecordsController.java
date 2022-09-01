@@ -4,8 +4,8 @@ import com.citi.training.groupb.serviceprovider.result.Result;
 import com.citi.training.groupb.serviceprovider.result.ResultCode;
 import com.citi.training.groupb.serviceprovider.result.ResultResponse;
 import com.citi.training.groupb.serviceprovider.service.TransactionRecordsService;
-import com.citi.training.groupb.serviceprovider.vo.NLPTransactionRequest;
-import com.citi.training.groupb.serviceprovider.vo.TransactionRequest;
+import com.citi.training.groupb.serviceprovider.vo.request.NLPTransactionRequest;
+import com.citi.training.groupb.serviceprovider.vo.request.TransactionRequest;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -53,8 +53,6 @@ public class TransactionRecordsController {
     public Result<Object> insertOneTransaction(@RequestBody TransactionRequest transactionRequest) {
         int res = transactionRecordsService.insertOneTransaction(transactionRequest);
         if (res > 0) {
-            Result<Object> failedRes = new Result<>();
-            failedRes.setStatus(ResultCode.BAD_REQUEST.getResultCode());
             String failedMsg = ResultCode.BAD_REQUEST.getResultMsg();
             failedMsg += switch (res) {
                 case 1 -> " 请检查输入的 Client Name";
@@ -67,8 +65,7 @@ public class TransactionRecordsController {
                 case 8 -> " 超过个人持有限额";
                 default -> "";
             };
-            failedRes.setMessage(failedMsg);
-            return failedRes;
+            return ResultResponse.getFailResult(ResultCode.BAD_REQUEST.getResultCode(), failedMsg);
         }
         return ResultResponse.getSuccessResult();
     }
@@ -78,8 +75,6 @@ public class TransactionRecordsController {
     public Result<Object> insertOneTransaction(@RequestBody NLPTransactionRequest transactionRequest) {
         int res = transactionRecordsService.insertOneNLPTransaction(transactionRequest);
         if (res > 0) {
-            Result<Object> failedRes = new Result<>();
-            failedRes.setStatus(ResultCode.BAD_REQUEST.getResultCode());
             String failedMsg = ResultCode.BAD_REQUEST.getResultMsg();
             failedMsg += switch (res) {
                 case 1 -> " 请检查输入信息中包含的 ticker";
@@ -87,8 +82,7 @@ public class TransactionRecordsController {
                 case 3 -> " 超过个人持有限额";
                 default -> "";
             };
-            failedRes.setMessage(failedMsg);
-            return failedRes;
+            return ResultResponse.getFailResult(ResultCode.BAD_REQUEST.getResultCode(), failedMsg);
         }
         return ResultResponse.getSuccessResult();
     }

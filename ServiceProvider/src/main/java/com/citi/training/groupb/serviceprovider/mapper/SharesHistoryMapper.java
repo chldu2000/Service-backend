@@ -2,7 +2,7 @@ package com.citi.training.groupb.serviceprovider.mapper;
 
 import com.citi.training.groupb.serviceprovider.entity.SharesHistory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.citi.training.groupb.serviceprovider.vo.DailySummary;
+import com.citi.training.groupb.serviceprovider.vo.response.DailySummary;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

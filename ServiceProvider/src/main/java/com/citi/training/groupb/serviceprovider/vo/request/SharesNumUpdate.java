@@ -1,4 +1,4 @@
-package com.citi.training.groupb.serviceprovider.vo;
+package com.citi.training.groupb.serviceprovider.vo.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

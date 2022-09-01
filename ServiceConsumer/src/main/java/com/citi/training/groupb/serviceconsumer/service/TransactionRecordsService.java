@@ -1,8 +1,8 @@
 package com.citi.training.groupb.serviceconsumer.service;
 
 import com.citi.training.groupb.serviceprovider.result.Result;
-import com.citi.training.groupb.serviceprovider.vo.NLPTransactionRequest;
-import com.citi.training.groupb.serviceprovider.vo.TransactionRequest;
+import com.citi.training.groupb.serviceprovider.vo.request.NLPTransactionRequest;
+import com.citi.training.groupb.serviceprovider.vo.request.TransactionRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;

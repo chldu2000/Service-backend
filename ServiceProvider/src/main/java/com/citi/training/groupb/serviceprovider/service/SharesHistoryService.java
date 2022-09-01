@@ -2,7 +2,7 @@ package com.citi.training.groupb.serviceprovider.service;
 
 import com.citi.training.groupb.serviceprovider.entity.SharesHistory;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.citi.training.groupb.serviceprovider.vo.DailySummary;
+import com.citi.training.groupb.serviceprovider.vo.response.DailySummary;
 
 import java.util.List;
 

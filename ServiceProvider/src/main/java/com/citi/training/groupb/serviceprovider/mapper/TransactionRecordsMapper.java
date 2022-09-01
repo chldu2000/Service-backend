@@ -2,7 +2,7 @@ package com.citi.training.groupb.serviceprovider.mapper;
 
 import com.citi.training.groupb.serviceprovider.entity.TransactionRecords;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.citi.training.groupb.serviceprovider.vo.TransactionView;
+import com.citi.training.groupb.serviceprovider.vo.response.TransactionView;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

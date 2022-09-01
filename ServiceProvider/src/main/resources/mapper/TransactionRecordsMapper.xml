@@ -8,7 +8,7 @@
           AND user_id = #{userId}
         ORDER BY transaction_time DESC limit 1;
     </select>
-    <select id="selectAll" resultType="com.citi.training.groupb.serviceprovider.vo.TransactionView">
+    <select id="selectAll" resultType="com.citi.training.groupb.serviceprovider.vo.response.TransactionView">
         SELECT
             DATE(`records`.`transaction_time`) AS `date`,
             `users`.`user_name` AS `client_name`,
@@ -29,7 +29,7 @@
           AND `records`.`salesman_id` = `salesman`.`salesman_id`
           AND `records`.`currency_id` = `exchange_rate`.`currency_id`
     </select>
-    <select id="selectAfterDate" parameterType="string" resultType="com.citi.training.groupb.serviceprovider.vo.TransactionView">
+    <select id="selectAfterDate" parameterType="string" resultType="com.citi.training.groupb.serviceprovider.vo.response.TransactionView">
         SELECT
             DATE(`records`.`transaction_time`) AS `date`,
             `users`.`user_name` AS `client_name`,
@@ -51,15 +51,6 @@
           AND `records`.`currency_id` = `exchange_rate`.`currency_id`
           AND DATE(`records`.`transaction_time`) > DATE(#{startTime});
     </select>
-<!--    <select id="getTradeSizeSummary" parameterType="string" resultType="com.citi.training.groupb.serviceprovider.vo.ShareRicDate">-->
-<!--        SELECT RIC,-->
-<!--               transaction_flag AS side,-->
-<!--               SUM(transaction_size) AS size-->
-<!--        FROM transaction_records-->
-<!--        WHERE DATE(transaction_time)=DATE(#{date})-->
-<!--        GROUP BY RIC,-->
-<!--            transaction_flag;-->
-<!--    </select>-->
     <select id="selectLatestPrice" parameterType="string" resultType="double">
         SELECT transaction_price
         FROM transaction_records

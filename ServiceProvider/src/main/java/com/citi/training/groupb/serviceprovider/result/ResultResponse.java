@@ -10,6 +10,6 @@ public class ResultResponse {
     }
 
     public static Result<Object> getFailResult(Integer code, String msg) {
-        return new Result(code, msg, null);
+        return new Result<>(code, msg, null);
     }
 }

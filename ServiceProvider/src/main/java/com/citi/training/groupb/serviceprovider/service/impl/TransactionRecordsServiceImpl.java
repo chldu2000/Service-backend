@@ -1,11 +1,14 @@
 package com.citi.training.groupb.serviceprovider.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.citi.training.groupb.serviceprovider.entity.*;
 import com.citi.training.groupb.serviceprovider.mapper.*;
 import com.citi.training.groupb.serviceprovider.service.TransactionRecordsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.citi.training.groupb.serviceprovider.vo.*;
+import com.citi.training.groupb.serviceprovider.vo.request.NLPTransactionRequest;
+import com.citi.training.groupb.serviceprovider.vo.request.SharesNumUpdate;
+import com.citi.training.groupb.serviceprovider.vo.request.TransactionRequest;
+import com.citi.training.groupb.serviceprovider.vo.response.TransactionSummary;
+import com.citi.training.groupb.serviceprovider.vo.response.TransactionView;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
