@@ -8,6 +8,7 @@
     </update>
     <select id="selectPriceByRic" parameterType="string" resultType="com.citi.training.groupb.serviceprovider.vo.SharesPrice">
         SELECT shares.RIC AS ric,
+               shares.shares_name AS sharesName,
                shares.shares_price as price,
                exchange_rate.currency_name as currencyName
         FROM shares JOIN exchange_rate ON shares.currency_id = exchange_rate.currency_id
