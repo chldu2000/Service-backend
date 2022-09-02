@@ -105,6 +105,8 @@ public class TransactionRecordsServiceImpl extends ServiceImpl<TransactionRecord
             return 1;
         } else if (transactionRequest.getSize() == null || transactionRequest.getSize() < 1) {
             return 2;
+        } else if (transactionRequest.getClientSide() == null) {
+            return 3;
         }
         // set default user
         User targetUser = userMapper.selectFirstUser();
@@ -127,7 +129,7 @@ public class TransactionRecordsServiceImpl extends ServiceImpl<TransactionRecord
                 targetSalesman.getSalesmanId(),
                 targetShare.getCurrencyId(),
                 targetShare.getSharesPrice(),
-                transactionRequest.getClientSide(),
+                transactionRequest.getClientSide().equals("buy") ? "buy" : "sell",
                 sizeToTrade + sharesHold,
                 "DefaultSector",
                 0
