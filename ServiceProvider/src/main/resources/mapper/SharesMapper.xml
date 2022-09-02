@@ -9,7 +9,6 @@
     <select id="selectPriceByRic" parameterType="string" resultType="com.citi.training.groupb.serviceprovider.vo.response.SharesPrice">
         SELECT shares.RIC AS ric,
                shares.shares_name AS sharesName,
-<<<<<<< HEAD:ServiceProvider/src/main/resources/mapper/SharesMapper.xml
                shares.shares_price as price,
                exchange_rate.currency_name as currencyName
         FROM shares JOIN exchange_rate ON shares.currency_id = exchange_rate.currency_id
@@ -20,17 +19,5 @@
         FROM shares
         WHERE shares_name = #{ticker}
             LIMIT 1;
-=======
-               shares.shares_price AS price,
-               exchange_rate.currency_name AS currencyName
-        FROM shares JOIN exchange_rate ON shares.currency_id = exchange_rate.currency_id
-        WHERE shares.RIC = #{ric};
-    </select>
-    <select id="selectByName" parameterType="string" resultType="com.citi.training.groupb.servicedemo.entity.Shares">
-        SELECT *
-        FROM shares
-        WHERE shares_name = #{ticker}
-        LIMIT 1;
->>>>>>> 52b0f5011203f69c26b63d0db4a661d254769758:src/main/resources/mapper/SharesMapper.xml
     </select>
 </mapper>

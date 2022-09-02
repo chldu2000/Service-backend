@@ -1,11 +1,7 @@
 package com.citi.training.groupb.serviceprovider.controller;
 
 import com.alibaba.fastjson.JSON;
-<<<<<<< HEAD:ServiceProvider/src/test/java/com/citi/training/groupb/serviceprovider/controller/TransactionRecordsControllerTest.java
 import com.citi.training.groupb.serviceprovider.vo.request.TransactionRequest;
-=======
-import com.citi.training.groupb.servicedemo.vo.TransactionRequest;
->>>>>>> 52b0f5011203f69c26b63d0db4a661d254769758:src/test/java/com/citi/training/groupb/servicedemo/controller/TransactionRecordsControllerTest.java
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

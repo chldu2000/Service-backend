@@ -43,19 +43,11 @@ public class TransactionRecordsServiceImpl extends ServiceImpl<TransactionRecord
     @Override
     public int insertOneTransaction(TransactionRequest transactionRequest) {
         // query user with username
-<<<<<<< HEAD:ServiceProvider/src/main/java/com/citi/training/groupb/serviceprovider/service/impl/TransactionRecordsServiceImpl.java
         User targetUser = userMapper.selectByUserName(transactionRequest.getClientName());
         // query share with ric or ticker (shares_name)
         Shares targetShare = (transactionRequest.getRic() == null || transactionRequest.getRic().isBlank()) ?
                 sharesMapper.selectByName(transactionRequest.getTicker()) :
                 sharesMapper.selectById(transactionRequest.getRic());
-=======
-        List<User> targetUser = userMapper.selectByUserName(transactionRequest.getClientName());
-        // query share with ric or ticker (shares_name)
-        Shares targetShare = (transactionRequest.getRic() == null || transactionRequest.getRic().isBlank()) ?
-            sharesMapper.selectByName(transactionRequest.getTicker()) :
-            sharesMapper.selectById(transactionRequest.getRic());
->>>>>>> 52b0f5011203f69c26b63d0db4a661d254769758:src/main/java/com/citi/training/groupb/servicedemo/service/impl/TransactionRecordsServiceImpl.java
         // query currency with currency name
         ExchangeRate targetExchangeRate = exchangeRateMapper.selectByCurrencyName(transactionRequest.getCurrency());
         // query salesman with name

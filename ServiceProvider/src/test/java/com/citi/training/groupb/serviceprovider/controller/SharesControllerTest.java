@@ -1,4 +1,4 @@
-package com.citi.training.groupb.servicedemo.controller;
+package com.citi.training.groupb.serviceprovider.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
