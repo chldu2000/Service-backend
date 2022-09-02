@@ -101,7 +101,8 @@ public class TransactionRecordsController {
             failedMsg += switch (res) {
                 case 1 -> " 请检查输入信息中包含的 ticker";
                 case 2 -> " 请检查输入信息中包含的 size";
-                case 3 -> " 超过个人持有限额";
+                case 3 -> " 请检查输入信息中包含的 client side";
+                case 4 -> " 超过个人持有限额";
                 default -> "";
             };
             return ResultResponse.getFailResult(ResultCode.BAD_REQUEST.getResultCode(), failedMsg);
