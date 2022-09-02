@@ -24,30 +24,48 @@ public class TransactionRecordsController {
         this.transactionRecordsService = transactionRecordsService;
     }
 
+    /**
+     * Get transaction records (table data)
+     */
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, path = "/transaction_records")
     public Result<Object> getTransactionView() {
         return ResultResponse.getSuccessResult(transactionRecordsService.getTransactionInTime("All"));
     }
 
+    /**
+     * Get transaction records (table data) in a time period
+     * @param timeGap time period
+     */
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, path ="/transaction_records/{timeGap}")
     public Result<Object> getTransactionView(@PathVariable String timeGap) {
         return ResultResponse.getSuccessResult(transactionRecordsService.getTransactionInTime(timeGap));
     }
 
+    /**
+     * Get transaction records (table data) with a summary (total buy, total sell ...)
+     */
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, path = "/transaction_records/summary")
     public Result<Object> getTransactionSummary() {
         return ResultResponse.getSuccessResult(transactionRecordsService.getTransactionSummaryInTime("All"));
     }
 
+    /**
+     * Get transaction records (table data) with a summary (total buy, total sell ...)
+     * @param timeGap time period
+     */
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, path = "/transaction_records/summary/{timeGap}")
     public Result<Object> getTransactionSummary(@PathVariable String timeGap) {
         return ResultResponse.getSuccessResult(transactionRecordsService.getTransactionSummaryInTime(timeGap));
     }
 
+    /**
+     * Insert a transaction record
+     * @param transactionRequest request body including transaction info
+     */
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, path = "/transaction_records")
     public Result<Object> insertOneTransaction(@RequestBody TransactionRequest transactionRequest) {
@@ -70,6 +88,10 @@ public class TransactionRecordsController {
         return ResultResponse.getSuccessResult();
     }
 
+    /**
+     * Insert a transaction record with info from nlp
+     * @param transactionRequest request body including transaction info
+     */
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, path = "/transaction_records/nlp")
     public Result<Object> insertOneTransaction(@RequestBody NLPTransactionRequest transactionRequest) {

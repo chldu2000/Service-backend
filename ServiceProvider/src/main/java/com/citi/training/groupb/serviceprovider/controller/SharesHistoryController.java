@@ -21,12 +21,19 @@ public class SharesHistoryController {
         this.sharesHistoryService = sharesHistoryService;
     }
 
+    /**
+     * Get transaction summary (chart data)
+     */
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, path = "/history")
     public Result<Object> getTransactionSummary() {
         return ResultResponse.getSuccessResult(sharesHistoryService.getSummaryInTime("All"));
     }
 
+    /**
+     * Get transaction summary (chart data) in a time period
+     * @param timeGap time period
+     */
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, path ="/history/{timeGap}")
     public Result<Object> getTransactionSummary(@PathVariable String timeGap) {

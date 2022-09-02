@@ -160,19 +160,20 @@ public class TransactionRecordsServiceImpl extends ServiceImpl<TransactionRecord
     @Override
     public TransactionSummary getTransactionSummaryInTime(String timeGap) {
         List<TransactionView> list = getTransactionInTime(timeGap);
-        TransactionSummary summary = new TransactionSummary(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, list);
+        TransactionSummary summary = new TransactionSummary(0, 0, 0, 0.0, 0.0, 0.0, list);
         summary.setList(list);
 
         for (TransactionView transaction : list) {
-            Double totalPrice = transaction.getPrice() * transaction.getSize();
+            Integer transactionSize = transaction.getSize();
+            // Double totalPrice = transaction.getPrice() * transaction.getSize();
             Double totalNotional = transaction.getNotionalUsd() * transaction.getSize();
             if (transaction.getClientSide().equals("sell")) {
                 // different transactions may user different currency...
                 // so TotalSell and TotalBuy may be wrong...?
-                summary.setTotalSell(summary.getTotalSell() + totalPrice);
+                summary.setTotalSell(summary.getTotalSell() + transactionSize);
                 summary.setSellNotional(summary.getSellNotional() + totalNotional);
             } else {
-                summary.setTotalBuy(summary.getTotalBuy() + totalPrice);
+                summary.setTotalBuy(summary.getTotalBuy() + transactionSize);
                 summary.setBuyNotional(summary.getBuyNotional() + totalNotional);
             }
         }

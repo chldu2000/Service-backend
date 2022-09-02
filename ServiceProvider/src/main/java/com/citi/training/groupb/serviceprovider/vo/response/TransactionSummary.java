@@ -10,13 +10,13 @@ import java.util.List;
 @AllArgsConstructor
 public class TransactionSummary {
     @JsonProperty("total_buy")
-    private Double totalBuy;
+    private Integer totalBuy;
 
     @JsonProperty("total_sell")
-    private Double totalSell;
+    private Integer totalSell;
 
     @JsonProperty("quantity")
-    private Double quantity;
+    private Integer quantity;
 
     @JsonProperty("buy_notional")
     private Double buyNotional;
