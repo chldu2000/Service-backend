@@ -15,9 +15,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class SharesHistoryControllerTest {
-
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @Test
     void getTransactionHistory() throws Exception {
